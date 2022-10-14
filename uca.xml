@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>spray-mode-copy</icon>
+	<name>Copy Image to Clipboard</name>
+	<unique-id>1665675762719923-1</unique-id>
+	<command>xclip -se c -t image/png -i %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1648741270191421-1</unique-id>
+	<command>kitty --working-directory %f</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+</actions>

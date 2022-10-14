@@ -9,6 +9,6 @@ curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://r
 ln -s $gitpath/.ignore $HOME/.ignore
 ln -s $gitpath/init.vim $HOME/.config/nvim/init.vim
 ln -s $gitpath/tinypng $HOME/.scripts/tinypng
-
+cp uca.xml $HOME/.config/Thunar/
 # Share system clipboard with unnamedplus
 sudo apt install vim-gtk3 ripgrep fd-find xclip
