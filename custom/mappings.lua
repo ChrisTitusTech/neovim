@@ -7,9 +7,21 @@ M.general = {
 
   n = {
     ["<leader>e"] = { "$", "End of line" },
-    ["<F5>"] = { "<cmd> UndotreeToggle <CR> <cmd> UndotreeFocus <CR>" , "toggle goyo" },
+		["S"] = { "<cmd> %s//g<Left><Left>", "Substitute macro" },
+		---
+		--Universal Always loaded Plugins
+		---
+    ["<F5>"] = { "<cmd> UndotreeToggle <CR> <cmd> UndotreeFocus <CR>" , "toggle undo tree" },
     ["<C-\\>"] = { "<cmd> TZAtaraxis <CR>", "toggle zen mode" },
     ["<Leader>p"] = { "<cmd> PasteImg <CR>", "Paste Image in markdown syntax" },
+		["<Leader>1"] = { "1gt<CR>", "open tab" },
+		["<Leader>2"] = { "2gt<CR>", "open tab" },
+		["<Leader>3"] = { "3gt<CR>", "open tab" },
+		["<Leader>4"] = { "4gt<CR>", "open tab" },
+		["<Leader>5"] = { "5gt<CR>", "open tab" },
+		["<Leader>t"] = { "<cmd> tabnew<CR>", "new tab" },
+		["<Leader>c"] = { "<cmd> tabclose<CR>", "close tab" },
+
   },
 
   v = {
