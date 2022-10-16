@@ -7,6 +7,9 @@ M.general = {
 
   n = {
     ["<leader>e"] = { "$", "End of line" },
+    ["<F5>"] = { "<cmd> UndotreeToggle <CR> <cmd> UndotreeFocus <CR>" , "toggle goyo" },
+    ["<C-\\>"] = { "<cmd> TZAtaraxis <CR>", "toggle zen mode" },
+    ["<Leader>p"] = { "<cmd> PasteImg <CR>", "Paste Image in markdown syntax" },
   },
 
   v = {
@@ -14,20 +17,6 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
   },
 
-}
-M.undotree = {
-  plugin=true,
-
-  n = {
-    ["<F5>"] = { "<cmd> UndotreeToggle <CR> <cmd> UndotreeFocus <CR>" , "toggle goyo" },
-  },
-}
-M.goyo = {
-  plugin=true,
-
-  n = {
-    ["<C-\\>"] = { "<cmd> Goyo <CR>", "toggle goyo" },
-  },
 }
 M.nvimtree = {
   plugin = true,
