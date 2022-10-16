@@ -6,6 +6,7 @@ rm -r ~/AppData/Local/nvim-data
 mkdir -p $HOME/.vim/undodir
 mkdir -p $HOME/.scripts
 git clone https://github.com/NvChad/NvChad $HOME\AppData\Local\nvim --depth 1
+irm "https://osdn.net/frs/redir.php?m=rwthaachen&f=mingw%2F68260%2Fmingw-get-setup.exe" -o "mingw-setup.exe"
 # Share system clipboard with unnamedplus
 #sudo apt install vim-gtk3 ripgrep fd-find xclip neovim python3-venv luarocks go luarocks go
 
