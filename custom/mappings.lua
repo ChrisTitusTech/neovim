@@ -7,7 +7,7 @@ M.general = {
 
   n = {
     ["<leader>e"] = { "$", "End of line" },
-		["S"] = { "<cmd> %s//g<Left><Left>", "Substitute macro" },
+		["S"] = { "<cmd> %s//g", "Substitute macro" },
 		---
 		--Universal Always loaded Plugins
 		---
