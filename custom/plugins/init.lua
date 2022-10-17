@@ -10,6 +10,9 @@ return {
   ["wakatime/vim-wakatime"] = {},
   ["Pocco81/auto-save.nvim"] = {},
   ["Pocco81/true-zen.nvim"] = {},
+  ["WhoIsSethDaniel/mason-tool-installer.nvim"] = {},
+
+
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
     config = function()
