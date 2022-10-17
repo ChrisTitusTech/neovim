@@ -20,7 +20,7 @@ vim.opt.breakindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
-vim.opt.undodir = "$HOME/.vim/undodir"
+vim.opt.undodir = vim.fn.expand('~/.vim/undodir')
 vim.opt.undofile = true
 vim.wo.relativenumber = true
 
