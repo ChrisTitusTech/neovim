@@ -5,36 +5,11 @@ return {
   -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
 
   -- Install Titus plugin additions
-  ["ekickx/clipboard-image.nvim"] = {
-		 config = function ()
-		 	require'clipboard-image'.setup {
-  markdown = {
-   img_dir = {"content/images", "%:p:h:t", "%:t:r"},
-   img_dir_txt = {"/images", "%:p:h:t", "%:t:r"},
-   img_name = function ()
-      vim.fn.inputsave()
-      local name = vim.fn.input('Name: ')
-      vim.fn.inputrestore()
-
-      if name == nil or name == '' then
-        return os.date('%y-%m-%d-%H-%M-%S')
-      end
-      return name
-    end,
-    img_handler = function ()
-        return function (path)
-            return os.execute(string.format('~/.scripts/tinypng -s -f %s &', path))
-        end
-    end
-  }
-			}
-		end,
-	},
+  ["ekickx/clipboard-image.nvim"] = {},
   ["mbbill/undotree"] = {},
   ["wakatime/vim-wakatime"] = {},
-  ["907th/vim-auto-save"] = {},
+  ["Pocco81/auto-save.nvim"] = {},
   ["Pocco81/true-zen.nvim"] = {},
-
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
     config = function()

@@ -1,5 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
-
+autocmd BufRead,BufNewFile * setlocal spell spelllang=en_us
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
 --   pattern = "*",
@@ -58,3 +58,11 @@ require'clipboard-image'.setup {
     end
   }
 }
+
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.diagnostics.eslint,
+        require("null-ls").builtins.completion.spell,
+    },
+})

@@ -22,6 +22,11 @@ local sources = {
   -- cpp
   b.formatting.clang_format,
   b.formatting.rustfmt,
+
+  --misc
+  b.hover.dictionary,
+  b.diagnostics.write_good,
+  b.formatting.prettierd,
 }
 
 null_ls.setup {
