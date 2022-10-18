@@ -103,4 +103,4 @@ require("mason-lspconfig").setup({
     'vint',
   },
 	automatic_installation = true,
-}
+})
