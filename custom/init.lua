@@ -1,9 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
--- Auto resize panes when resizing nvim window
--- autocmd("VimResized", {
---   pattern = "*",
---   command = "tabdo wincmd =",
--- })
 
 -- ========================================================================== --
 -- ==                           EDITOR SETTINGS                            == --
@@ -61,7 +55,6 @@ require'clipboard-image'.setup {
 require("null-ls").setup({
     sources = {
         require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.diagnostics.eslint,
         require("null-ls").builtins.completion.spell,
     },
 })
@@ -103,4 +96,3 @@ require("mason-lspconfig").setup({
     'vint',
   },
 	automatic_installation = true,
-})

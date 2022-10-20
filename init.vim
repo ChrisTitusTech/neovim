@@ -4,7 +4,7 @@ Plug 'itchyny/lightline.vim' "Highlights lines
 Plug 'joshdick/onedark.vim' "The One Dark Theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' "Fuzzy find plugin
-Plug 'junegunn/goyo.vim' "Removes Line numbers for focusing
+Plug 'Pocco81/true-zen.nvim' "Removes Line numbers for focusing
 Plug 'mbbill/undotree' "Creates an undo tree
 Plug 'preservim/nerdtree' "File browser inside vim
 Plug 'godlygeek/tabular' "Auto formatting
@@ -13,8 +13,10 @@ Plug 'ekickx/clipboard-image.nvim'
 Plug 'wakatime/vim-wakatime' "Wakatime tracker
 Plug 'ryanoasis/vim-devicons' "Cool icons for nerd tree
 Plug 'Xuyuanp/nerdtree-git-plugin' "nerd tree customization
-Plug '907th/vim-auto-save' "auto saves files as you edit
-Plug 'jdhao/better-escape.vim' "remaps esc key to jj
+Plug 'Pocco81/auto-save.nvim' "auto saves files as you edit
+Plug 'max397574/better-escape.nvim' "remaps esc key to jj
+Plug 'williamboman/mason.nvim' "New Package Installer
+Plug 'ekickx/clipboard-image.nvim' "clipboard copy
 call plug#end()
 
 " Startup Settings
@@ -60,9 +62,9 @@ call plug#end()
 
 " Plugin Shortcuts
 	map <Leader>f :NERDTreeToggle<CR>
-	map <C-\> :Goyo<CR>
+	map <C-\> :TZAtaraxis<CR>
   nnoremap <F5> :UndotreeToggle<CR> :UndotreeFocus<CR>
-  nnoremap <C-f> :Files!<CR>
+  nnoremap <Leader>ff :Files!<CR>
   nnoremap <Leader>l :Tabularize /
   let g:better_escape_shortcut = 'jj'
   let g:better_escape_interval = 250
