@@ -1,8 +1,11 @@
+require('keymaps')
+require('plugins')
 
 -- ========================================================================== --
 -- ==                           EDITOR SETTINGS                            == --
 -- ========================================================================== --
-
+vim.g.mapleader = " "
+vim.o.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.ignorecase = true
@@ -25,7 +28,7 @@ vim.wo.relativenumber = true
 -- Colorscheme
 ---
 vim.opt.termguicolors = true
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme nord')
 
 ---
 -- Titus Custom Markdown HUGO Image Insert
@@ -58,41 +61,17 @@ require("null-ls").setup({
         require("null-ls").builtins.completion.spell,
     },
 })
-
+require("mason").setup()
 require("mason-lspconfig").setup({
   -- a list of all tools you want to ensure are installed upon
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
-    'awk-language-server',
-    'bash-debug-adapter',
-    'bash-language-server',
-    'cmake-language-server',
-    'cmakelang',
-    'codespell',
-    'cpptools',
-    'cspell',
-    'grammarly-languageserver',
-    'lua-language-server',
-    'luacheck',
-    'luaformatter',
-    'markdownlint',
+    'awk_ls',
+    'bashls',
+    'grammarly',
+    'luau_lsp',
     'marksman',
-    'misspell',
-    'powershell-editor-services',
-    'prettier',
-    'prettierd',
-    'shellcheck',
-    'textlint',
-    'vim-language-server',
-    'write-good',
-    'stylua',
-    'shellcheck',
-    'editorconfig-checker',
-    'impl',
-    'json-to-struct',
-    'revive',
-    'shfmt',
-    'staticcheck',
-    'vint',
+    'powershell_es',
   },
 	automatic_installation = true,
+})
