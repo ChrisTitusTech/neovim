@@ -20,6 +20,13 @@ vim.opt.undodir = vim.fn.expand('~/.vim/undodir')
 vim.opt.undofile = true
 vim.wo.relativenumber = true
 
+---
+-- Old VIM Script Commands
+--
+vim.cmd([[
+set spell
+]])
+
 -- ========================================================================== --
 -- ==                         PLUGIN CONFIGURATION                         == --
 -- ========================================================================== --
@@ -59,6 +66,7 @@ require("null-ls").setup({
     sources = {
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.completion.spell,
+				require("null-ls").builtins.diagnostics.vale,
     },
 })
 require("mason").setup()
@@ -75,3 +83,14 @@ require("mason-lspconfig").setup({
   },
 	automatic_installation = true,
 })
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+}
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("nvim-tree").setup()
