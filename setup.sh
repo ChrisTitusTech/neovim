@@ -14,3 +14,7 @@ cp uca.xml "$HOME/.config/Thunar/"
 ln -s "$gitpath/custom" "$HOME/.config/nvim"
 # Share system clipboard with unnamedplus
 sudo apt install vim-gtk3 ripgrep fd-find xclip neovim python3-venv luarocks golang-go shellcheck
+# vale smart text writing https://vale.sh/docs/vale-cli/installation/
+nix-env -iA nixpkgs.vale
+ln -s "$gitpath/.vale.ini" "$HOME/.vale.ini"
+vale sync
