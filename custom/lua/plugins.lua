@@ -46,20 +46,37 @@ return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim"} -- Have packer manage itself
   use { "nvim-lua/plenary.nvim"} -- Useful lua functions used by lots of plugins
-  use { "windwp/nvim-autopairs"} -- Autopairs, integrates with both cmp and treesitter
-  use { "numToStr/Comment.nvim"}
-  use { "JoosepAlviste/nvim-ts-context-commentstring"}
+  use {
+		"windwp/nvim-autopairs",  -- Autopairs, integrates with both cmp and treesitter
+    config = function() require("nvim-autopairs").setup {} end
+	}
+	use {
+    'numToStr/Comment.nvim',
+    config = function() require('Comment').setup {} end
+	} 
   use { "kyazdani42/nvim-web-devicons"}
   use { "kyazdani42/nvim-tree.lua"}
-  use { "akinsho/bufferline.nvim"}
-  use { "moll/vim-bbye"}
-  use { "nvim-lualine/lualine.nvim"}
-  use { "akinsho/toggleterm.nvim"}
-  use { "ahmedkhalf/project.nvim"}
-  use { "lewis6991/impatient.nvim"}
-  use { "lukas-reineke/indent-blankline.nvim"}
-  use { "goolord/alpha-nvim"}
-
+	use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons"}  use { "moll/vim-bbye"}
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+		end
+	}
+	use { 
+		"ahmedkhalf/project.nvim",
+    config = function() require("project_nvim").setup {} end
+	}
+  use { "lewis6991/impatient.nvim"} -- faster startup
+  use { "lukas-reineke/indent-blankline.nvim"} -- smarter indent
+  use {
+			'goolord/alpha-nvim',
+			requires = { 'kyazdani42/nvim-web-devicons' },
+			config = function ()
+					require'alpha'.setup(require'alpha.themes.startify'.config)
+			end
+	} 
   -- Colorschemes
   use { "folke/tokyonight.nvim"}
   use { "lunarvim/darkplus.nvim"}

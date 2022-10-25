@@ -1,6 +1,6 @@
 require('keymaps')
 require('plugins')
-
+require('impatient') --Uses impatient plugin to load faster
 -- ========================================================================== --
 -- ==                           EDITOR SETTINGS                            == --
 -- ========================================================================== --
@@ -61,28 +61,16 @@ require'clipboard-image'.setup {
     end
   }
 }
-
 require("null-ls").setup({
     sources = {
-        require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.completion.spell,
-				require("null-ls").builtins.diagnostics.vale,
+			require("null-ls").builtins.formatting.stylua,
+			require("null-ls").builtins.completion.spell,
+			require("null-ls").builtins.diagnostics.vale,
     },
 })
+
 require("mason").setup()
-require("mason-lspconfig").setup({
-  -- a list of all tools you want to ensure are installed upon
-  -- start; they should be the names Mason uses for each tool
-  ensure_installed = {
-    'awk_ls',
-    'bashls',
-    'grammarly',
-    'luau_lsp',
-    'marksman',
-    'powershell_es',
-  },
-	automatic_installation = true,
-})
+require("mason-lspconfig").setup()
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -93,4 +81,37 @@ require'nvim-treesitter.configs'.setup {
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true
+  },
+})
+
+require('lualine').setup {
+	options = {
+		icons_enabled = true,
+		theme = 'nord',
+	},
+}
+-- Add Ctrl + X and initialize toggle term 
+require("toggleterm").setup {
+	open_mapping = [[<c-x>]],
+	shade_terminals = false
+}
+-- Add projects capability to telescope
+require('telescope').load_extension('projects')
+
+-- Smarter Indent setup
+vim.opt.list = true
+-- vim.opt.listchars:append "space:⋅"
+vim.opt.listchars:append "eol:↴"
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+
