@@ -46,30 +46,32 @@ return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim"} -- Have packer manage itself
   use { "nvim-lua/plenary.nvim"} -- Useful lua functions used by lots of plugins
-  use {
-		"windwp/nvim-autopairs",  -- Autopairs, integrates with both cmp and treesitter
-    config = function() require("nvim-autopairs").setup {} end
-	}
+	-- Comment Plugin use gc or gb in visual mode
 	use {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup {} end
-	} 
+	}
+	-- File Explorer in Vim Ctrl+f
   use { "kyazdani42/nvim-web-devicons"}
   use { "kyazdani42/nvim-tree.lua"}
 	use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons"}  use { "moll/vim-bbye"}
+	-- Pretty status bar
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
+	-- Terminal Toggle
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 		end
 	}
+	-- Use Ctrl+fp to list recent git projects
 	use { 
 		"ahmedkhalf/project.nvim",
     config = function() require("project_nvim").setup {} end
 	}
   use { "lewis6991/impatient.nvim"} -- faster startup
   use { "lukas-reineke/indent-blankline.nvim"} -- smarter indent
+	-- alpha dashboard
   use {
 			'goolord/alpha-nvim',
 			requires = { 'kyazdani42/nvim-web-devicons' },
@@ -77,30 +79,25 @@ return packer.startup(function(use)
 					require'alpha'.setup(require'alpha.themes.startify'.config)
 			end
 	} 
+
   -- Colorschemes
   use { "folke/tokyonight.nvim"}
   use { "lunarvim/darkplus.nvim"}
   use { "arcticicestudio/nord-vim" }
 
-
-  -- cmp plugins
-  use { "hrsh7th/nvim-cmp"} -- The completion plugin
-  use { "hrsh7th/cmp-buffer"} -- buffer completions
-  use { "hrsh7th/cmp-path"} -- path completions
-  use { "saadparwaiz1/cmp_luasnip"} -- snippet completions
-  use { "hrsh7th/cmp-nvim-lsp"}
-  use { "hrsh7th/cmp-nvim-lua"}
-
-  -- snippets
-  use { "L3MON4D3/LuaSnip"} --snippet engine
-  use { "rafamadriz/friendly-snippets"} -- a bunch of snippets to use
-
-  -- LSP
-  -- use { "williamboman/nvim-lsp-installer"} -- simple to use language server installer
+  -- LSP and Linting
   use { "neovim/nvim-lspconfig"} -- enable LSP
   use { "williamboman/mason.nvim"}
   use { "williamboman/mason-lspconfig.nvim"}
-  use { "jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters
+  use({
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("null-ls").setup()
+		end,
+		requires = { "nvim-lua/plenary.nvim" },
+	}) 
+	
+	-- Quick word search under cursor alt+p and alt+n
   use { "RRethy/vim-illuminate"}
 
   -- Telescope
@@ -111,11 +108,6 @@ return packer.startup(function(use)
 
   -- Git
   use { "lewis6991/gitsigns.nvim"}
-
-  -- DAP
-  use { "mfussenegger/nvim-dap"}
-  use { "rcarriga/nvim-dap-ui"}
-  use { "ravenxrz/DAPInstall.nvim"}
 
   -- Titus Custom
   use { "ekickx/clipboard-image.nvim" }

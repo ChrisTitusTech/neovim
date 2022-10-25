@@ -61,16 +61,20 @@ require'clipboard-image'.setup {
     end
   }
 }
-require("null-ls").setup({
-    sources = {
-			require("null-ls").builtins.formatting.stylua,
-			require("null-ls").builtins.completion.spell,
-			require("null-ls").builtins.diagnostics.vale,
-    },
-})
 
+-- LSP and Linting Config
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+    'awk_ls',
+    'bashls',
+    'grammarly',
+    'luau_lsp',
+    'marksman',
+    'powershell_es',
+  },
+	automatic_installation = true,
+})
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -78,29 +82,35 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+require("null-ls").setup({
+	sources = {
+			require("null-ls").builtins.formatting.stylua,
+			require("null-ls").builtins.diagnostics.alex,
+			require("null-ls").builtins.completion.spell,
+			require("null-ls").builtins.code_actions.proselint
+	},
+})
+
+-- File Explorer nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup({
-  sync_root_with_cwd = true,
-  respect_buf_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_root = true
-  },
-})
+require("nvim-tree").setup()
 
+--Pretty Status bar
 require('lualine').setup {
 	options = {
 		icons_enabled = true,
 		theme = 'nord',
 	},
 }
+
 -- Add Ctrl + X and initialize toggle term 
 require("toggleterm").setup {
 	open_mapping = [[<c-x>]],
 	shade_terminals = false
 }
+
 -- Add projects capability to telescope
 require('telescope').load_extension('projects')
 
