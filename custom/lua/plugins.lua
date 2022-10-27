@@ -96,7 +96,14 @@ return packer.startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim" },
 	}) 
-	
+	use {
+    "brymer-meneses/grammar-guard.nvim",
+    requires = {
+        "neovim/nvim-lspconfig",
+        "williamboman/nvim-lsp-installer"
+    }
+	}
+
 	-- Quick word search under cursor alt+p and alt+n
   use { "RRethy/vim-illuminate"}
 

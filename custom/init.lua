@@ -74,6 +74,13 @@ require("mason-lspconfig").setup({
 	automatic_installation = true,
 })
 
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.luau_lsp.setup{}
+require'lspconfig'.marksman.setup{}
+require'lspconfig'.powershell_es.setup{
+  bundle_path = '~/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/',
+}
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -83,9 +90,11 @@ require'nvim-treesitter.configs'.setup {
 require("null-ls").setup({
 	sources = {
 			require("null-ls").builtins.formatting.stylua,
-			require("null-ls").builtins.diagnostics.alex,
+			require("null-ls").builtins.code_actions.cspell,
+			require("null-ls").builtins.diagnostics.codespell,
 			require("null-ls").builtins.completion.spell,
-			require("null-ls").builtins.code_actions.proselint
+			require("null-ls").builtins.code_actions.proselint,
+			require("null-ls").builtins.diagnostics.write_good,
 	},
 })
 
