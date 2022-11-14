@@ -3,15 +3,18 @@
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
 local util = require 'lspconfig/util'
+-- you can use vim.fn.stdpath("data or cache or other things") to get there directories
+-- for more help see :h stdpath()
+local std_path = vim.fn.stdpath("data") .. "mason/packages/lua-language-server/extension/server/meta/spell"
 
 local Dictionary_file = {
-    ["en-US"] = {"$HOME/.local/share/nvim/mason/packages/lua-language-server/extension/server/meta/spell/dictionary.txt"} -- there is another way to find ~/.config/nvim ?
+    ["en-US"] = { std_path "/dictionary.txt"} -- there is another way to find ~/.config/nvim ?
 }
 local DisabledRules_file = {
-    ["en-US"] = {"$HOME/.local/share/nvim/mason/packages/lua-language-server/extension/server/meta/spell/disable.txt"} -- there is another way to find ~/.config/nvim ?
+    ["en-US"] = { std_path "/disable.txt"} -- there is another way to find ~/.config/nvim ?
 }
 local FalsePositives_file = {
-    ["en-US"] = {"$HOME/.local/share/nvim/mason/packages/lua-language-server/extension/server/meta/spell/false.txt"} -- there is another way to find ~/.config/nvim ?
+    ["en-US"] = { std_path "/false.txt"} -- there is another way to find ~/.config/nvim ?
 }
 
 local function readFiles(files)
