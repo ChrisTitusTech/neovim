@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Initial Setup file for new systems
 rm -r ~/AppData/Local/nvim
 rm -r ~/AppData/Local/nvim-data
