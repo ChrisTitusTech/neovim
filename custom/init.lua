@@ -87,29 +87,21 @@ require("mason-lspconfig").setup({
 	automatic_installation = true,
 })
 
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.luau_lsp.setup{}
-require'lspconfig'.marksman.setup{}
-require'lspconfig'.powershell_es.setup{
-  bundle_path = '~/.local/share/nvim/mason/packages/powershell-editor-services/PowerShellEditorServices/',
-}
+-- Learn the keybindings, see :help lsp-zero-keybindings
+-- Learn to configure LSP servers, see :help lsp-zero-api-showcase
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+-- (Optional) Configure lua language server for neovim
+lsp.nvim_workspace()
+
+lsp.setup()
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
 }
-
-require("null-ls").setup({
-	sources = {
-			require("null-ls").builtins.formatting.stylua,
-			require("null-ls").builtins.code_actions.cspell,
-			require("null-ls").builtins.diagnostics.codespell,
-			require("null-ls").builtins.completion.spell,
-			require("null-ls").builtins.code_actions.proselint,
-			require("null-ls").builtins.diagnostics.write_good,
-	},
-})
 
 -- File Explorer nvim-tree
 vim.g.loaded_netrw = 1
@@ -133,6 +125,11 @@ require("toggleterm").setup {
 
 -- Add projects capability to telescope
 require('telescope').load_extension('projects')
+require'telescope'.setup({
+    defaults = {
+        file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/", "%.jpg", "%.png" },
+    }
+})
 
 -- Smarter Indent setup
 vim.opt.list = true
