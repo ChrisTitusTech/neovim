@@ -102,6 +102,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+require'lspconfig'.grammarly.setup{}
 
 -- File Explorer nvim-tree
 vim.g.loaded_netrw = 1

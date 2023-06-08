@@ -81,7 +81,6 @@ return packer.startup(function(use)
 	} 
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim"}
   use { "lunarvim/darkplus.nvim"}
   use { "arcticicestudio/nord-vim" }
 
@@ -114,12 +113,7 @@ return packer.startup(function(use)
   }
 }
 
-  use {
-    "brymer-meneses/grammar-guard.nvim",
-    requires = {
-        "neovim/nvim-lspconfig",
-    }
-	}
+  use { "emacs-grammarly/lsp-grammarly" }
 
 	-- Quick word search under cursor alt+p and alt+n
   use { "RRethy/vim-illuminate"}
@@ -139,6 +133,7 @@ return packer.startup(function(use)
   use { "wakatime/vim-wakatime" }
   use { "Pocco81/auto-save.nvim" }
   use { "Pocco81/true-zen.nvim" }
+  use { "lambdalisue/suda.vim" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
