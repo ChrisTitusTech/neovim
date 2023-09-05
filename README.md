@@ -1,1 +1,3 @@
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+## Titus's Neovim Adventure
+
+This has gone through many versions from using vim to neovim and modifying this repo to travel through all the iterations through out the years. I've pretty much found my resting spot using the [kickstart-nvim](https://github.com/nvim-lua/kickstart.nvim) project from one of the creators of the official neovim project. 
