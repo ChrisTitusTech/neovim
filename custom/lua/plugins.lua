@@ -128,7 +128,7 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim"}
 
   -- Titus Custom
-  use { "ekickx/clipboard-image.nvim" }
+  use { "postfen/clipboard-image.nvim" }
   use { "mbbill/undotree" }
   use { "wakatime/vim-wakatime" }
   use { "Pocco81/auto-save.nvim" }

@@ -5,6 +5,7 @@ require('impatient') --Uses impatient plugin to load faster
 -- ==                           EDITOR SETTINGS                            == --
 -- ========================================================================== --
 vim.g.mapleader = " "
+vim.g.maplocalleader = ' '
 vim.o.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.mouse = 'a'
@@ -67,11 +68,6 @@ require'clipboard-image'.setup {
       end
       return name
     end,
-    img_handler = function ()
-        return function (path)
-            return os.execute(string.format('~/.scripts/tinypng -s -f %s &', path))
-        end
-    end
   }
 }
 
