@@ -5,8 +5,6 @@
 return {
 -- File Explorer in Vim Ctrl+f
   "kyazdani42/nvim-tree.lua",
--- Use Ctrl+fp to list recent git projects
-  "ahmedkhalf/project.nvim",
 -- alpha dashboard
   {
   'goolord/alpha-nvim',
@@ -15,6 +13,7 @@ return {
         require'alpha'.setup(require'alpha.themes.startify'.config)
   end
   };
+  "jvgrootveld/telescope-zoxide",
   -- Colorschemes
   "lunarvim/darkplus.nvim",
   "arcticicestudio/nord-vim",
