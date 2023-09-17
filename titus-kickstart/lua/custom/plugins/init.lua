@@ -4,7 +4,10 @@
 -- See the kickstart.nvim README for more information
 return {
 -- File Explorer in Vim Ctrl+f
-  "kyazdani42/nvim-tree.lua",
+ {
+ "nvim-telescope/telescope-file-browser.nvim",
+ dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+ };
 -- Use Ctrl+fp to list recent git projects
   "ahmedkhalf/project.nvim",
 -- alpha dashboard
