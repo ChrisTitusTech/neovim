@@ -18,6 +18,7 @@ return {
         require'alpha'.setup(require'alpha.themes.startify'.config)
   end
   };
+  "jvgrootveld/telescope-zoxide",
   -- Colorschemes
   "lunarvim/darkplus.nvim",
   "arcticicestudio/nord-vim",
