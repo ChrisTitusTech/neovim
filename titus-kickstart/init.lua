@@ -537,21 +537,6 @@ require'clipboard-image'.setup {
   }
 }
 
--- Nvim Tree for file explorer view
---
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-
 -- Useful for easily creating commands
 local z_utils = require("telescope._extensions.zoxide.utils")
 
