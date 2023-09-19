@@ -249,6 +249,7 @@ vim.opt.expandtab = true
 vim.opt.undodir = vim.fn.expand('~/.vim/undodir')
 vim.opt.undofile = true
 vim.wo.relativenumber = true
+vim.opt.spell = true
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
