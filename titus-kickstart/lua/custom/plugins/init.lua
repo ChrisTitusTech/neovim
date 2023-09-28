@@ -20,6 +20,7 @@ return {
   };
   "jvgrootveld/telescope-zoxide",
   -- Colorschemes
+  "lunarvim/synthwave84.nvim",
   "lunarvim/darkplus.nvim",
   "arcticicestudio/nord-vim",
   "emacs-grammarly/lsp-grammarly",
@@ -32,4 +33,8 @@ return {
   "Pocco81/auto-save.nvim",
   "Pocco81/true-zen.nvim",
   "lambdalisue/suda.vim",
+  {
+  "giusgad/pets.nvim",
+  dependencies = { "MunifTanjim/nui.nvim", "edluffy/hologram.nvim" },
+  }
 }
