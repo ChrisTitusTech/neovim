@@ -137,15 +137,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -550,4 +541,17 @@ require('telescope').setup{
   }
 }
 
+require 'synthwave84'.setup({
+  glow = {
+    error_msg = true,
+    type2 = true,
+    func = true,
+    keyword = true,
+    operator = false,
+    buffer_current_target = true,
+    buffer_visible_target = true,
+    buffer_inactive_target = true,
+  }
+})
 
+vim.cmd[[colorscheme synthwave84]]
