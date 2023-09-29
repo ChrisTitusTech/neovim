@@ -34,4 +34,5 @@ return {
   "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "lunarvim/synthwave84.nvim",
+  "github/copilot.vim",
 }
