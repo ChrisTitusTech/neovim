@@ -32,7 +32,6 @@ return {
   "Pocco81/auto-save.nvim",
   "Pocco81/true-zen.nvim",
   "lambdalisue/suda.vim",
-  "tpope/vim-sleuth",
   "lunarvim/synthwave84.nvim",
   "github/copilot.vim",
 }
