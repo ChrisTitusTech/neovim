@@ -574,7 +574,6 @@ end
 vim.cmd('command! DeleteFileSwaps :lua delete_file_swaps()')
 
 vim.o.shortmess = vim.o.shortmess .. 'A'
-vim.o.noshortname = true
 
 vim.g.gui_font_default_size = 12
 vim.g.gui_font_size = vim.g.gui_font_default_size
