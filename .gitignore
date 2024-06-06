@@ -3,3 +3,4 @@ custom/plugin/packer_compiled.lua
 mingw-setup.exe
 titus-kickstart/lazy-lock.json
 titus-kickstart/lazy-lock.json
+titus-kickstart/.luarc.json
