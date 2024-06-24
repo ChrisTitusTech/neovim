@@ -10,7 +10,6 @@ Plug 'preservim/nerdtree' "File browser inside vim
 Plug 'godlygeek/tabular' "Auto formatting
 Plug 'plasticboy/vim-markdown' "Markdown syntax highlighting
 Plug 'ekickx/clipboard-image.nvim'
-Plug 'wakatime/vim-wakatime' "Wakatime tracker
 Plug 'ryanoasis/vim-devicons' "Cool icons for nerd tree
 Plug 'Xuyuanp/nerdtree-git-plugin' "nerd tree customization
 Plug '907th/vim-auto-save' "auto saves files as you edit
