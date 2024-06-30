@@ -54,7 +54,7 @@ if [ -f /etc/os-release ]; then
         CLIPBOARD_PKG="xclip"
     fi
 
-    case "$ID" in
+    case "$ID_LIKE" in
         debian|ubuntu)
             sudo apt install ripgrep fd-find $CLIPBOARD_PKG python3-venv luarocks golang-go shellcheck -y
             ;;
