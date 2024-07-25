@@ -32,12 +32,10 @@ gitpath=$(pwd)
 
 # Backup existing neovim config and install new one
 mkdir -p "$LINUXTOOLBOXDIR/backup/nvim"
-cp -r ~/.config/nvim "$LINUXTOOLBOXDIR/backup/nvim/config"
-cp -r ~/.local/share/nvim "$LINUXTOOLBOXDIR/backup/nvim/local_share"
-cp -r ~/.cache/nvim "$LINUXTOOLBOXDIR/backup/nvim/cache"
-rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim
-rm -rf ~/.cache/nvim
+[ -d ~/.config/nvim ] && cp -r ~/.config/nvim "$LINUXTOOLBOXDIR/backup/nvim/config"
+[ -d ~/.local/share/nvim ] && cp -r ~/.local/share/nvim "$LINUXTOOLBOXDIR/backup/nvim/local_share"
+[ -d ~/.cache/nvim ] && cp -r ~/.cache/nvim "$LINUXTOOLBOXDIR/backup/nvim/cache"
+rm -rf ~/.config/nvim ~/.local/share/nvim ~/.cache/nvim
 
 # Setup Neovim config and link to linuxtoolbox
 mkdir -p "$HOME/.vim/undodir"
@@ -54,7 +52,7 @@ if [ -f /etc/os-release ]; then
         CLIPBOARD_PKG="xclip"
     fi
 
-    case "$ID_LIKE" in
+    case "${ID_LIKE:-$ID}" in
         debian|ubuntu)
             sudo apt install ripgrep fd-find $CLIPBOARD_PKG python3-venv luarocks golang-go shellcheck -y
             ;;
@@ -68,8 +66,10 @@ if [ -f /etc/os-release ]; then
             sudo zypper install ripgrep fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks go ShellCheck -y
             ;;
         *)
-            echo "Unsupported OS"
-            exit 1
+            echo -e "${YELLOW}Unsupported OS. Please install the following packages manually:${RC}"
+            echo "ripgrep, fzf, $CLIPBOARD_PKG, neovim, python3-virtualenv (or equivalent), luarocks, go, shellcheck"
             ;;
     esac
+else
+    echo -e "${RED}Unable to determine OS. Please install required packages manually.${RC}"
 fi
