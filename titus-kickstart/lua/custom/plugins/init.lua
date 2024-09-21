@@ -34,4 +34,5 @@ return {
   "lambdalisue/suda.vim",
   "lunarvim/synthwave84.nvim",
   "github/copilot.vim",
+  "numToStr/Comment.nvim",
 }
