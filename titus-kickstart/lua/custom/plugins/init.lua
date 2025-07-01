@@ -22,6 +22,7 @@ return {
   -- Colorschemes
   "lunarvim/darkplus.nvim",
   "arcticicestudio/nord-vim",
+  "lunarvim/synthwave84.nvim",
   "emacs-grammarly/lsp-grammarly",
 -- Quick word search under cursor alt+p and alt+n
   "RRethy/vim-illuminate",
@@ -32,7 +33,6 @@ return {
   "Pocco81/auto-save.nvim",
   "Pocco81/true-zen.nvim",
   "lambdalisue/suda.vim",
-  "lunarvim/synthwave84.nvim",
   "github/copilot.vim",
   "numToStr/Comment.nvim",
 }

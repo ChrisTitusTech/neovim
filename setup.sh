@@ -5,36 +5,9 @@ RED='\e[31m'
 YELLOW='\e[33m'
 GREEN='\e[32m'
 
-# Check if the home directory and linuxtoolbox folder exist, create them if they don't
-LINUXTOOLBOXDIR="$HOME/linuxtoolbox"
-
-if [[ ! -d "$LINUXTOOLBOXDIR" ]]; then
-    echo -e "${YELLOW}Creating linuxtoolbox directory: $LINUXTOOLBOXDIR${RC}"
-    mkdir -p "$LINUXTOOLBOXDIR"
-    echo -e "${GREEN}linuxtoolbox directory created: $LINUXTOOLBOXDIR${RC}"
-fi
-
-if [[ ! -d "$LINUXTOOLBOXDIR/neovim" ]]; then
-    echo -e "${YELLOW}Cloning neovim repository into: $LINUXTOOLBOXDIR/neovim${RC}"
-    git clone https://github.com/ChrisTitusTech/neovim "$LINUXTOOLBOXDIR/neovim"
-    if [[ $? -eq 0 ]]; then
-        echo -e "${GREEN}Successfully cloned neovim repository${RC}"
-    else
-        echo -e "${RED}Failed to clone neovim repository${RC}"
-        exit 1
-    fi
-fi
-
-cd "$LINUXTOOLBOXDIR/neovim"
-
 # Initial Setup file for new systems
 gitpath=$(pwd)
 
-# Backup existing neovim config and install new one
-mkdir -p "$LINUXTOOLBOXDIR/backup/nvim"
-[ -d ~/.config/nvim ] && cp -r ~/.config/nvim "$LINUXTOOLBOXDIR/backup/nvim/config"
-[ -d ~/.local/share/nvim ] && cp -r ~/.local/share/nvim "$LINUXTOOLBOXDIR/backup/nvim/local_share"
-[ -d ~/.cache/nvim ] && cp -r ~/.cache/nvim "$LINUXTOOLBOXDIR/backup/nvim/cache"
 rm -rf ~/.config/nvim ~/.local/share/nvim ~/.cache/nvim
 
 # Setup Neovim config and link to linuxtoolbox
