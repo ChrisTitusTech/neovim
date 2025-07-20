@@ -7,9 +7,21 @@ return {
   {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').load_extension('file_browser')
+    end,
   },
   -- Use Ctrl+fp to list recent git projects
-  'ahmedkhalf/project.nvim',
+  {
+    'ahmedkhalf/project.nvim',
+    config = function()
+      require('project_nvim').setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+      })
+      require('telescope').load_extension('projects')
+    end,
+  },
   -- alpha dashboard
   {
     'goolord/alpha-nvim',
@@ -18,7 +30,12 @@ return {
       require('alpha').setup(require('alpha.themes.startify').config)
     end,
   },
-  'jvgrootveld/telescope-zoxide',
+  {
+    'jvgrootveld/telescope-zoxide',
+    config = function()
+      require('telescope').load_extension('zoxide')
+    end,
+  },
   -- Colorschemes
   'lunarvim/darkplus.nvim',
   'arcticicestudio/nord-vim',
@@ -32,7 +49,7 @@ return {
     event = 'VeryLazy',
     opts = {
       dir_path = 'content/images/%y/',
-      extention = 'webp',
+      extension = 'webp', -- Fixed typo: was 'extention'
       filename = function()
         vim.fn.inputsave()
         local name = vim.fn.input 'Name: '
@@ -47,9 +64,30 @@ return {
   },
   'mbbill/undotree',
   'wakatime/vim-wakatime',
-  'Pocco81/auto-save.nvim',
-  'Pocco81/true-zen.nvim',
+  {
+    'Pocco81/auto-save.nvim',
+    config = function()
+      require('auto-save').setup({
+        -- your config goes here
+        -- or just leave it empty :)
+      })
+    end,
+  },
+  {
+    'Pocco81/true-zen.nvim',
+    config = function()
+      require('true-zen').setup({
+        -- your config goes here
+        -- or just leave it empty :)
+      })
+    end,
+  },
   'lambdalisue/suda.vim',
   'github/copilot.vim',
-  'numToStr/Comment.nvim',
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+  },
 }
