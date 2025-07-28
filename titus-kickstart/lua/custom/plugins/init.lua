@@ -3,46 +3,38 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  -- File Explorer in Vim Ctrl+f
+  -- File Explorer I'll force you to use oil or use mini.files, if you desperatly want an tree viewer just use Snacks.explorer().
   {
-    'nvim-telescope/telescope-file-browser.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    'stevearc/oil.nvim',
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
     config = function()
-      require('telescope').load_extension 'file_browser'
-    end,
-  },
-  -- Use Ctrl+fp to list recent git projects
-  {
-    'ahmedkhalf/project.nvim',
-    config = function()
-      require('project_nvim').setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
+      local oil = require 'oil'
+      oil.setup {
+        columns = { 'icon' },
+        keymaps = {
+          ['<C-l>'] = false,
+          ['<C-k>'] = false,
+          ['<C-j>'] = false,
+          ['<M-h>'] = 'actions.select_split',
+        },
+        view_options = {
+          show_hidden = true,
+        },
       }
-      require('telescope').load_extension 'projects'
+
+      vim.keymap.set('n', '-', oil.open, { desc = 'Open parent directory with oil' })
+      vim.keymap.set('n', '<leader>o', oil.toggle_float)
     end,
   },
-  -- alpha dashboard
-  {
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
-    end,
-  },
-  {
-    'jvgrootveld/telescope-zoxide',
-    config = function()
-      require('telescope').load_extension 'zoxide'
-    end,
-  },
+  --
+  -- alpha dashboard = https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md configure it urself
+  -- telescope-zoxide  = :lua Snacks.picker.zoxide(opts?)
   -- Colorschemes
   'lunarvim/darkplus.nvim',
   'arcticicestudio/nord-vim',
   'lunarvim/synthwave84.nvim',
   'emacs-grammarly/lsp-grammarly',
-  -- Quick word search under cursor alt+p and alt+n
-  'RRethy/vim-illuminate',
+  -- vim-illuminate and true-zen = :lua Snacks.zen() I dont actually hate it for writing.
   -- Titus Custom
   {
     'HakonHarnes/img-clip.nvim',
@@ -65,18 +57,9 @@ return {
   'mbbill/undotree',
   'wakatime/vim-wakatime',
   {
-    'Pocco81/auto-save.nvim',
+    'Pocco81/auto-save.nvim', -- seriously, fuck this. It should just be like 6 lines of lua or something.
     config = function()
       require('auto-save').setup {
-        -- your config goes here
-        -- or just leave it empty :)
-      }
-    end,
-  },
-  {
-    'Pocco81/true-zen.nvim',
-    config = function()
-      require('true-zen').setup {
         -- your config goes here
         -- or just leave it empty :)
       }
