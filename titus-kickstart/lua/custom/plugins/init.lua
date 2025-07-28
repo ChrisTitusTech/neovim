@@ -8,18 +8,18 @@ return {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
     config = function()
-      require('telescope').load_extension('file_browser')
+      require('telescope').load_extension 'file_browser'
     end,
   },
   -- Use Ctrl+fp to list recent git projects
   {
     'ahmedkhalf/project.nvim',
     config = function()
-      require('project_nvim').setup({
+      require('project_nvim').setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
-      })
-      require('telescope').load_extension('projects')
+      }
+      require('telescope').load_extension 'projects'
     end,
   },
   -- alpha dashboard
@@ -33,7 +33,7 @@ return {
   {
     'jvgrootveld/telescope-zoxide',
     config = function()
-      require('telescope').load_extension('zoxide')
+      require('telescope').load_extension 'zoxide'
     end,
   },
   -- Colorschemes
@@ -67,19 +67,19 @@ return {
   {
     'Pocco81/auto-save.nvim',
     config = function()
-      require('auto-save').setup({
+      require('auto-save').setup {
         -- your config goes here
         -- or just leave it empty :)
-      })
+      }
     end,
   },
   {
     'Pocco81/true-zen.nvim',
     config = function()
-      require('true-zen').setup({
+      require('true-zen').setup {
         -- your config goes here
         -- or just leave it empty :)
-      })
+      }
     end,
   },
   'lambdalisue/suda.vim',
@@ -90,4 +90,5 @@ return {
       require('Comment').setup()
     end,
   },
+  'ionide/Ionide-vim',
 }
