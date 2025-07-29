@@ -51,10 +51,7 @@ keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
 
 -- Plugins --
---keymap('n', '<leader>a', ':Alpha<CR>', opts)
-keymap('n', '<leader>a', function()
-  require('snacks').dashboard.open()
-end, opts)
+keymap('n', '<leader>a', ':Alpha<CR>', opts)
 
 -- Comment
 keymap('n', '<leader>/', "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)

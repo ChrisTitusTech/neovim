@@ -27,8 +27,18 @@ return {
   },
   --
   -- alpha dashboard = https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md configure it urself
-  -- telescope-zoxide  = :lua Snacks.picker.zoxide(opts?)
-  -- Colorschemes
+  {
+    'goolord/alpha-nvim',
+    -- dependencies = { 'echasnovski/mini.icons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local startify = require 'alpha.themes.startify'
+      -- available: devicons, mini, default is mini
+      -- if provider not loaded and enabled is true, it will try to use another provider
+      startify.file_icons.provider = 'devicons'
+      require('alpha').setup(startify.config)
+    end,
+  },
   'lunarvim/darkplus.nvim',
   'arcticicestudio/nord-vim',
   'lunarvim/synthwave84.nvim',
