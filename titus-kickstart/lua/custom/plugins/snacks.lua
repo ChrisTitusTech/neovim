@@ -13,6 +13,7 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+      explorer = { enabled = true },
       image = { enabled = true },
       picker = { enabled = true },
     },
@@ -30,6 +31,34 @@ return {
           Snacks.picker.keymaps()
         end,
         desc = '[S]earch [K]eymaps',
+      },
+      {
+        '<leader>sc',
+        function()
+          Snacks.picker.commands()
+        end,
+        desc = '[S]earch [C]ommands',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.builtin()
+        end,
+        desc = '[S]earch [B]uiltins',
+      },
+      {
+        '<leader>sf',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = '[S]earch [F]iles',
+      },
+      {
+        '<leader>fe',
+        function()
+          Snacks.explorer.open()
+        end,
+        desc = '[F]iles [E]xplorer open tree',
       },
       {
         '<leader>ff',
