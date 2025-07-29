@@ -32,7 +32,7 @@ return {
         desc = '[S]earch [K]eymaps',
       },
       {
-        '<leader>sf',
+        '<leader>ff',
         function()
           Snacks.picker.smart()
         end,
@@ -54,11 +54,18 @@ return {
         mode = { 'n', 'x' },
       },
       {
-        '<leader>sg',
+        '<leader>fg',
         function()
           Snacks.picker.grep()
         end,
         desc = '[S]earch by [G]rep',
+      },
+      {
+        '<leader>fp',
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = '[S]earch [P]rojects',
       },
       {
         '<leader>sd',

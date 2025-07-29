@@ -13,7 +13,6 @@ return {
         columns = { 'icon' },
         keymaps = {
           ['<C-l>'] = false,
-          ['<C-k>'] = false,
           ['<C-j>'] = false,
           ['<M-h>'] = 'actions.select_split',
         },
