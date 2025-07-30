@@ -25,22 +25,6 @@ return {
       vim.keymap.set('n', '<leader>o', oil.toggle_float)
     end,
   },
-  --
-  -- alpha dashboard = https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md configure it urself
-  {
-    'goolord/alpha-nvim',
-    -- dependencies = { 'echasnovski/mini.icons' },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      local startify = require 'alpha.themes.startify'
-      -- available: devicons, mini, default is mini
-      -- if provider not loaded and enabled is true, it will try to use another provider
-      startify.file_icons.provider = 'devicons'
-      require('alpha').setup(startify.config)
-    end,
-  },
-  'lunarvim/darkplus.nvim',
-  'arcticicestudio/nord-vim',
   'lunarvim/synthwave84.nvim',
   'emacs-grammarly/lsp-grammarly',
   -- vim-illuminate and true-zen = :lua Snacks.zen() I dont actually hate it for writing.
@@ -75,7 +59,7 @@ return {
     end,
   },
   'lambdalisue/suda.vim',
-  'github/copilot.vim',
+  --  'github/copilot.vim',
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -83,4 +67,25 @@ return {
     end,
   },
   'ionide/Ionide-vim',
+  {
+    'greggh/claude-code.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- Required for git operations
+    },
+    config = function()
+      require('claude-code').setup()
+    end,
+  },
+  {
+    'goolord/alpha-nvim',
+    -- dependencies = { 'echasnovski/mini.icons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local startify = require 'alpha.themes.startify'
+      -- available: devicons, mini, default is mini
+      -- if provider not loaded and enabled is true, it will try to use another provider
+      startify.file_icons.provider = 'devicons'
+      require('alpha').setup(startify.config)
+    end,
+  },
 }

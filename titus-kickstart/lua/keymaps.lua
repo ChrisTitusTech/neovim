@@ -52,6 +52,7 @@ keymap('v', '>', '>gv', opts)
 
 -- Plugins --
 keymap('n', '<leader>a', ':Alpha<CR>', opts)
+keymap('n', '<leader>cc', ':ClaudeCode<CR>', opts)
 
 -- Comment
 keymap('n', '<leader>/', "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
