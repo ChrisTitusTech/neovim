@@ -25,6 +25,7 @@ return {
       vim.keymap.set('n', '<leader>o', oil.toggle_float)
     end,
   },
+  'scottmckendry/cyberdream.nvim',
   'lunarvim/synthwave84.nvim',
   'emacs-grammarly/lsp-grammarly',
   -- vim-illuminate and true-zen = :lua Snacks.zen() I dont actually hate it for writing.
@@ -33,24 +34,23 @@ return {
     'HakonHarnes/img-clip.nvim',
     event = 'VeryLazy',
     opts = {
-      dir_path = 'content/images/%y/',
-      extension = 'webp', -- Fixed typo: was 'extention'
-      filename = function()
-        vim.fn.inputsave()
-        local name = vim.fn.input 'Name: '
-        vim.fn.inputrestore()
-
-        if name == nil or name == '' then
-          return os.date '%y-%m-%d-%H-%M-%S'
-        end
-        return name
-      end,
+      default = {
+        dir_path = '/home/titus/github/website/static/images/2025/',
+        extension = 'webp',
+        template = '![$FILE_NAME_NO_EXT](/images/2025/$FILE_NAME)',
+        relative_template_path = false,
+      },
+      filetypes = {
+        markdown = {
+          template = '![$FILE_NAME_NO_EXT](/images/2025/$FILE_NAME)',
+        },
+      },
     },
   },
   'mbbill/undotree',
   'wakatime/vim-wakatime',
   {
-    'Pocco81/auto-save.nvim', -- seriously, fuck this. It should just be like 6 lines of lua or something.
+    'Pocco81/auto-save.nvim',
     config = function()
       require('auto-save').setup {
         -- your config goes here

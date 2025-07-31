@@ -59,7 +59,7 @@ keymap('n', '<leader>/', "<cmd>lua require('Comment.api').toggle.linewise.curren
 keymap('x', '<leader>/', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 
 -- Custom
-keymap('n', '<leader>p', '<cmd> PasteImg <CR>', opts)
+keymap('n', '<leader>p', '<cmd> PasteImage <CR>', opts)
 keymap('n', '<leader>e', '$', opts)
 keymap('n', 'S', '<cmd> %s//g', opts)
 keymap('n', '<F5>', '<cmd> UndotreeToggle <CR> <cmd> UndotreeFocus <CR>', opts)
