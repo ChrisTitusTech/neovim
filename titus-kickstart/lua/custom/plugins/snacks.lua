@@ -14,7 +14,7 @@ return {
     ---@type snacks.Config
     opts = {
       explorer = { enabled = true },
-      image = { enabled = true },
+      --      image = { enabled = true },
       picker = { enabled = true },
     },
     keys = {
