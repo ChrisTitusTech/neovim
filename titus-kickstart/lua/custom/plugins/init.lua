@@ -88,4 +88,26 @@ return {
       require('alpha').setup(startify.config)
     end,
   },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup {
+        suggestion = { enabled = false }, -- Disable suggestions since we're using blink.cmp
+        panel = { enabled = false },      -- Disable panel since we're using blink.cmp
+        filetypes = {
+          markdown = true,
+          yaml = true,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+        },
+      }
+    end,
+  },
 }

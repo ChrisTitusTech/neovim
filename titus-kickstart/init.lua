@@ -636,6 +636,7 @@ require('lazy').setup({
     event = 'VimEnter',
     version = '1.*',
     dependencies = {
+      'giuxtaposition/blink-cmp-copilot',
       -- Snippet Engine
       {
         'L3MON4D3/LuaSnip',
@@ -708,8 +709,13 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'copilot' },
         providers = {
+          copilot = {
+            name = 'copilot',
+            module = 'blink-cmp-copilot',
+            score_offset = 100, -- higher score so Copilot is prioritized
+          },
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
@@ -866,5 +872,28 @@ require('lazy').setup({
   },
 })
 require 'keymaps' -- Load keymaps from `lua/keymaps.lua` file
+
+-- Configure blink.cmp and Copilot interaction
+-- Only set up autocommands after Copilot is loaded
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'CopilotAttached',
+  callback = function()
+    -- Set up the blink.cmp integration autocommands
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'BlinkCmpMenuOpen',
+      callback = function()
+        vim.b.copilot_suggestion_hidden = true
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'BlinkCmpMenuClose',
+      callback = function()
+        vim.b.copilot_suggestion_hidden = false
+      end,
+    })
+  end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
