@@ -582,10 +582,23 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       -- Setup LSP servers manually
-      for server_name, server_config in pairs(servers) do
-        local server = vim.tbl_deep_extend('force', {}, server_config)
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        require('lspconfig')[server_name].setup(server)
+      -- Use vim.lsp.config for Neovim 0.11+ (new API)
+      if vim.fn.has 'nvim-0.11' == 1 then
+        for server_name, server_config in pairs(servers) do
+          local server = vim.tbl_deep_extend('force', {}, server_config)
+          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          
+          -- Use new vim.lsp.config API for 0.11+
+          vim.lsp.config[server_name] = server
+          vim.lsp.enable(server_name)
+        end
+      else
+        -- Use legacy lspconfig for Neovim < 0.11
+        for server_name, server_config in pairs(servers) do
+          local server = vim.tbl_deep_extend('force', {}, server_config)
+          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          require('lspconfig')[server_name].setup(server)
+        end
       end
     end,
   },
