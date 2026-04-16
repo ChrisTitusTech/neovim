@@ -25,7 +25,6 @@ return {
       vim.keymap.set('n', '<leader>o', oil.toggle_float)
     end,
   },
-  'scottmckendry/cyberdream.nvim',
   'lunarvim/synthwave84.nvim',
   'emacs-grammarly/lsp-grammarly',
   -- vim-illuminate and true-zen = :lua Snacks.zen() I dont actually hate it for writing.
@@ -113,5 +112,73 @@ return {
         },
       }
     end,
+  },
+
+  -- VSCode-style tab bar
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        mode = 'buffers',
+        diagnostics = 'nvim_lsp',
+        offsets = { { filetype = 'snacks_layout_box', text = 'Explorer' } },
+      },
+    },
+    keys = {
+      { '<S-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '<S-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
+      { '<leader>x', '<cmd>bdelete<CR>', desc = 'Close buffer' },
+    },
+  },
+
+  -- Integrated terminal (Ctrl+` like VSCode)
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      size = 15,
+      open_mapping = [[<C-`>]],
+      direction = 'horizontal',
+      shade_terminals = true,
+    },
+  },
+
+  -- Problems panel (like VSCode Ctrl+Shift+M)
+  {
+    'folke/trouble.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Buffer Diagnostics' },
+      { '<leader>cs', '<cmd>Trouble symbols toggle<CR>', desc = 'Symbols (Trouble)' },
+    },
+    opts = {},
+  },
+
+  -- Sticky scroll (shows current function/class at top like VSCode)
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = { max_lines = 3 },
+  },
+
+  -- Symbol outline sidebar (like VSCode outline panel)
+  {
+    'stevearc/aerial.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '<leader>ao', '<cmd>AerialToggle!<CR>', desc = 'Toggle [A]erial [O]utline' },
+    },
+    opts = {},
+  },
+
+  -- Multi-cursor (Ctrl+N to select next, like VSCode Ctrl+D)
+  { 'mg979/vim-visual-multi', branch = 'master' },
+
+  -- Inline color swatches (#fff, rgb(), etc.)
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = { render = 'background' },
   },
 }
