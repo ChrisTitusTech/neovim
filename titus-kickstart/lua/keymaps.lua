@@ -65,7 +65,6 @@ map('x', '<leader>/', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.
 -- [[ Tools & Plugins ]]
 -- ============================================================
 map('n', '<leader>a',  ':Alpha<CR>',                                    { silent = true, desc = 'Open [A]lpha dashboard' })
-map('n', '<leader>cc', ':ClaudeCode<CR>',                               { silent = true, desc = '[C]laude [C]ode' })
 map('n', '<leader>p',  '<cmd>PasteImage<CR>',                           { silent = true, desc = '[P]aste image from clipboard' })
 map('n', '<F5>',       '<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>', { silent = true, desc = 'Toggle Undotree' })
 map('n', '<C-\\>',   '<cmd>TZAtaraxis<CR>',                           { silent = true, desc = 'Toggle Zen mode' })

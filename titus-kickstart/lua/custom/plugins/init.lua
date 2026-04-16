@@ -5,33 +5,30 @@ return {
   -- ============================================================
   -- [[ Simple Plugins ]]
   -- ============================================================
-  'NMAC427/guess-indent.nvim',     -- auto-detect tabstop/shiftwidth
-  'lunarvim/synthwave84.nvim',     -- alternate colorscheme
+  'NMAC427/guess-indent.nvim', -- auto-detect tabstop/shiftwidth
+  'lunarvim/synthwave84.nvim', -- alternate colorscheme
   'emacs-grammarly/lsp-grammarly', -- Grammarly LSP for prose
-  'mbbill/undotree',               -- persistent undo history tree (mapped to <F5>)
-  'wakatime/vim-wakatime',         -- WakaTime coding time tracker
-  'lambdalisue/suda.vim',          -- edit files as sudo (:SudaWrite)
-  'ionide/Ionide-vim',             -- F# language support
+  'mbbill/undotree', -- persistent undo history tree (mapped to <F5>)
+  'wakatime/vim-wakatime', -- WakaTime coding time tracker
+  'lambdalisue/suda.vim', -- edit files as sudo (:SudaWrite)
+  'ionide/Ionide-vim', -- F# language support
   { 'mg979/vim-visual-multi', branch = 'master' }, -- multi-cursor (Ctrl+N)
 
   -- Simple opts-only plugins
-  { 'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   { 'nvim-treesitter/nvim-treesitter-context', opts = { max_lines = 3 } },
-  { 'brenoprata10/nvim-highlight-colors',      opts = { render = 'background' } },
-  { 'Pocco81/auto-save.nvim',                  opts = {} },
+  { 'brenoprata10/nvim-highlight-colors', opts = { render = 'background' } },
+  { 'Pocco81/auto-save.nvim', opts = {} },
 
   -- ============================================================
   -- [[ Colorscheme ]] (priority = 1000 so it loads first)
   -- ============================================================
   {
-    'scottmckendry/cyberdream.nvim',
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'cyberdream'
+      require('nordic').load()
     end,
   },
 
@@ -47,14 +44,34 @@ return {
       icons = {
         mappings = vim.g.have_nerd_font,
         keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ', Down = '<Down> ', Left = '<Left> ', Right = '<Right> ',
-          C = '<C-…> ', M = '<M-…> ', D = '<D-…> ', S = '<S-…> ',
-          CR = '<CR> ', Esc = '<Esc> ', ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ', NL = '<NL> ', BS = '<BS> ',
-          Space = '<Space> ', Tab = '<Tab> ',
-          F1 = '<F1>', F2 = '<F2>', F3 = '<F3>', F4 = '<F4>',
-          F5 = '<F5>', F6 = '<F6>', F7 = '<F7>', F8 = '<F8>',
-          F9 = '<F9>', F10 = '<F10>', F11 = '<F11>', F12 = '<F12>',
+          Up = '<Up> ',
+          Down = '<Down> ',
+          Left = '<Left> ',
+          Right = '<Right> ',
+          C = '<C-…> ',
+          M = '<M-…> ',
+          D = '<D-…> ',
+          S = '<S-…> ',
+          CR = '<CR> ',
+          Esc = '<Esc> ',
+          ScrollWheelDown = '<ScrollWheelDown> ',
+          ScrollWheelUp = '<ScrollWheelUp> ',
+          NL = '<NL> ',
+          BS = '<BS> ',
+          Space = '<Space> ',
+          Tab = '<Tab> ',
+          F1 = '<F1>',
+          F2 = '<F2>',
+          F3 = '<F3>',
+          F4 = '<F4>',
+          F5 = '<F5>',
+          F6 = '<F6>',
+          F7 = '<F7>',
+          F8 = '<F8>',
+          F9 = '<F9>',
+          F10 = '<F10>',
+          F11 = '<F11>',
+          F12 = '<F12>',
         },
       },
       spec = {
@@ -71,7 +88,7 @@ return {
     opts = {
       library = {
         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        { path = 'snacks.nvim',        words = { 'Snacks' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
       },
     },
   },
@@ -93,15 +110,15 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          map('grn', vim.lsp.buf.rename,                              '[R]e[n]ame')
-          map('gra', vim.lsp.buf.code_action,                        '[G]oto Code [A]ction', { 'n', 'x' })
-          map('grr', require('snacks').picker.lsp_references,        '[G]oto [R]eferences')
-          map('gri', require('snacks').picker.lsp_implementations,   '[G]oto [I]mplementation')
-          map('grd', require('snacks').picker.lsp_definitions,       '[G]oto [D]efinition')
-          map('grD', vim.lsp.buf.declaration,                        '[G]oto [D]eclaration')
-          map('gO',  require('snacks').picker.lsp_symbols,           'Open Document Symbols')
-          map('gW',  require('snacks').picker.lsp_workspace_symbols, 'Open Workspace Symbols')
-          map('grt', require('snacks').picker.lsp_type_definitions,  '[G]oto [T]ype Definition')
+          map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          map('grr', require('snacks').picker.lsp_references, '[G]oto [R]eferences')
+          map('gri', require('snacks').picker.lsp_implementations, '[G]oto [I]mplementation')
+          map('grd', require('snacks').picker.lsp_definitions, '[G]oto [D]efinition')
+          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('gO', require('snacks').picker.lsp_symbols, 'Open Document Symbols')
+          map('gW', require('snacks').picker.lsp_workspace_symbols, 'Open Workspace Symbols')
+          map('grt', require('snacks').picker.lsp_type_definitions, '[G]oto [T]ype Definition')
 
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
@@ -115,10 +132,14 @@ return {
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local hl_group = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf, group = hl_group, callback = vim.lsp.buf.document_highlight,
+              buffer = event.buf,
+              group = hl_group,
+              callback = vim.lsp.buf.document_highlight,
             })
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf, group = hl_group, callback = vim.lsp.buf.clear_references,
+              buffer = event.buf,
+              group = hl_group,
+              callback = vim.lsp.buf.clear_references,
             })
             vim.api.nvim_create_autocmd('LspDetach', {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
@@ -139,19 +160,22 @@ return {
 
       vim.diagnostic.config {
         severity_sort = true,
-        float   = { border = 'rounded', source = 'if_many' },
+        float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN]  = '󰀪 ',
-            [vim.diagnostic.severity.INFO]  = '󰋽 ',
-            [vim.diagnostic.severity.HINT]  = '󰌶 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         } or {},
         virtual_text = {
-          source = 'if_many', spacing = 2,
-          format = function(d) return d.message end,
+          source = 'if_many',
+          spacing = 2,
+          format = function(d)
+            return d.message
+          end,
         },
       }
 
@@ -171,7 +195,9 @@ return {
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       for i, name in ipairs(ensure_installed) do
-        if lsp_to_mason[name] then ensure_installed[i] = lsp_to_mason[name] end
+        if lsp_to_mason[name] then
+          ensure_installed[i] = lsp_to_mason[name]
+        end
       end
       vim.list_extend(ensure_installed, { 'stylua' })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -188,11 +214,13 @@ return {
   { -- Autoformat on save; <leader>f to format manually
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
-    cmd   = { 'ConformInfo' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>f',
-        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+        function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+        end,
         mode = '',
         desc = '[F]ormat buffer',
       },
@@ -201,7 +229,9 @@ return {
       notify_on_error = false,
       format_on_save = function(bufnr)
         local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then return nil end
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          return nil
+        end
         return { timeout_ms = 500, lsp_format = 'fallback' }
       end,
       formatters_by_ft = {
@@ -214,7 +244,7 @@ return {
 
   { -- Completion engine with Copilot + LuaSnip sources
     'saghen/blink.cmp',
-    event   = 'VimEnter',
+    event = 'VimEnter',
     version = '1.*',
     dependencies = {
       'giuxtaposition/blink-cmp-copilot',
@@ -222,7 +252,9 @@ return {
         'L3MON4D3/LuaSnip',
         version = '2.*',
         build = (function()
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then return end
+          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+            return
+          end
           return 'make install_jsregexp'
         end)(),
         opts = {},
@@ -232,18 +264,18 @@ return {
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
     opts = {
-      keymap    = { preset = 'default' },
+      keymap = { preset = 'default' },
       appearance = { nerd_font_variant = 'mono' },
       completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'lazydev', 'copilot' },
         providers = {
-          copilot  = { name = 'copilot',  module = 'blink-cmp-copilot',          score_offset = 100 },
-          lazydev  = {                    module = 'lazydev.integrations.blink',  score_offset = 100 },
+          copilot = { name = 'copilot', module = 'blink-cmp-copilot', score_offset = 100 },
+          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
-      snippets  = { preset = 'luasnip' },
-      fuzzy     = { implementation = 'prefer_rust_with_warning' },
+      snippets = { preset = 'luasnip' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true },
     },
   },
@@ -256,19 +288,21 @@ return {
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
       ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function() return '%2l:%-2v' end
+      statusline.section_location = function()
+        return '%2l:%-2v'
+      end
     end,
   },
 
   { -- Syntax highlighting, code-aware folding, text objects
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main  = 'nvim-treesitter.configs',
-    opts  = {
+    main = 'nvim-treesitter.configs',
+    opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       auto_install = true,
-      highlight    = { enable = true, additional_vim_regex_highlighting = { 'ruby' } },
-      indent       = { enable = true, disable = { 'ruby' } },
+      highlight = { enable = true, additional_vim_regex_highlighting = { 'ruby' } },
+      indent = { enable = true, disable = { 'ruby' } },
     },
   },
 
@@ -286,8 +320,8 @@ return {
         },
         view_options = { show_hidden = true },
       }
-      vim.keymap.set('n', '-',          oil.open,        { desc = 'Open parent directory (oil)' })
-      vim.keymap.set('n', '<leader>o',  oil.toggle_float, { desc = 'Toggle oil float' })
+      vim.keymap.set('n', '-', oil.open, { desc = 'Open parent directory (oil)' })
+      vim.keymap.set('n', '<leader>o', oil.toggle_float, { desc = 'Toggle oil float' })
     end,
   },
 
@@ -298,10 +332,10 @@ return {
       local year = os.date '%Y'
       return {
         default = {
-          dir_path           = '/home/titus/github/website/static/images/' .. year .. '/',
-          extension          = 'webp',
-          process_cmd        = 'cwebp -q 80 "$FILE_PATH" -o "$FILE_PATH" 2>/dev/null',
-          template           = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)',
+          dir_path = '/home/titus/github/website/static/images/' .. year .. '/',
+          extension = 'webp',
+          process_cmd = 'cwebp -q 80 "$FILE_PATH" -o "$FILE_PATH" 2>/dev/null',
+          template = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)',
           relative_template_path = false,
         },
         filetypes = {
@@ -313,13 +347,9 @@ return {
 
   { -- Smart comment toggling (<leader>/)
     'numToStr/Comment.nvim',
-    config = function() require('Comment').setup() end,
-  },
-
-  { -- Claude AI chat integration (<leader>cc)
-    'greggh/claude-code.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('claude-code').setup() end,
+    config = function()
+      require('Comment').setup()
+    end,
   },
 
   { -- Dashboard / start screen (<leader>a)
@@ -334,17 +364,22 @@ return {
 
   { -- GitHub Copilot (suggestions fed through blink.cmp, not inline)
     'zbirenbaum/copilot.lua',
-    cmd   = 'Copilot',
+    cmd = 'Copilot',
     event = 'InsertEnter',
     config = function()
       require('copilot').setup {
         suggestion = { enabled = false },
-        panel      = { enabled = false },
-        filetypes  = {
-          markdown  = true,
-          yaml      = true,
-          help      = false, gitcommit = false, gitrebase = false,
-          hgcommit  = false, svn = false, cvs = false, ['.'] = false,
+        panel = { enabled = false },
+        filetypes = {
+          markdown = true,
+          yaml = true,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ['.'] = false,
         },
       }
     end,
@@ -356,15 +391,15 @@ return {
     dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
       options = {
-        mode        = 'buffers',
+        mode = 'buffers',
         diagnostics = 'nvim_lsp',
-        offsets     = { { filetype = 'snacks_layout_box', text = 'Explorer' } },
+        offsets = { { filetype = 'snacks_layout_box', text = 'Explorer' } },
       },
     },
     keys = {
-      { '<S-l>',      '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
-      { '<S-h>',      '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
-      { '<leader>x',  '<cmd>bdelete<CR>',             desc = 'Close buffer' },
+      { '<S-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '<S-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
+      { '<leader>x', '<cmd>bdelete<CR>', desc = 'Close buffer' },
     },
   },
 
@@ -372,9 +407,9 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     opts = {
-      size         = 15,
+      size = 15,
       open_mapping = [[<C-`>]],
-      direction    = 'horizontal',
+      direction = 'horizontal',
       shade_terminals = true,
     },
   },
@@ -383,9 +418,9 @@ return {
     'folke/trouble.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
     keys = {
-      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>',               desc = 'Diagnostics (Trouble)' },
-      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',  desc = 'Buffer Diagnostics' },
-      { '<leader>cs', '<cmd>Trouble symbols toggle<CR>',                   desc = 'Symbols (Trouble)' },
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Buffer Diagnostics' },
+      { '<leader>cs', '<cmd>Trouble symbols toggle<CR>', desc = 'Symbols (Trouble)' },
     },
     opts = {},
   },
@@ -406,21 +441,26 @@ return {
     },
     build = 'make tiktoken',
     opts = {
-      model  = 'auto',
+      model = 'auto',
       window = { layout = 'vertical', width = 0.4 },
       auto_insert_mode = true,
     },
     keys = {
-      { '<leader>cc', '<cmd>CopilotChatToggle<CR>',  mode = { 'n', 'v' }, desc = '[C]opilot [C]hat toggle' },
-      { '<leader>cq', function()
+      { '<leader>cc', '<cmd>CopilotChatToggle<CR>', mode = { 'n', 'v' }, desc = '[C]opilot [C]hat toggle' },
+      {
+        '<leader>cq',
+        function()
           local input = vim.fn.input 'Quick Chat: '
           if input ~= '' then
             require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
           end
-        end, mode = { 'n', 'v' }, desc = '[C]opilot [Q]uick Chat' },
-      { '<leader>cp', '<cmd>CopilotChatPrompts<CR>',  desc = '[C]opilot [P]rompts' },
-      { '<leader>cm', '<cmd>CopilotChatModels<CR>',   desc = '[C]opilot [M]odels' },
-      { '<leader>cr', '<cmd>CopilotChatReset<CR>',    desc = '[C]opilot [R]eset chat' },
+        end,
+        mode = { 'n', 'v' },
+        desc = '[C]opilot [Q]uick Chat',
+      },
+      { '<leader>cp', '<cmd>CopilotChatPrompts<CR>', desc = '[C]opilot [P]rompts' },
+      { '<leader>cm', '<cmd>CopilotChatModels<CR>', desc = '[C]opilot [M]odels' },
+      { '<leader>cr', '<cmd>CopilotChatReset<CR>', desc = '[C]opilot [R]eset chat' },
     },
   },
 }

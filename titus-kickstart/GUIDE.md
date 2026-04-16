@@ -213,7 +213,7 @@ Git diff signs appear in the sign column automatically via gitsigns.
 
 | Plugin | Purpose |
 |--------|---------|
-| `scottmckendry/cyberdream.nvim` | Default color scheme |
+| `AlexvZyl/nordic.nvim` | Default color scheme |
 | `lunarvim/synthwave84.nvim` | Alternate color scheme |
 | `akinsho/bufferline.nvim` | VSCode-style buffer tabs |
 | `echasnovski/mini.nvim` | Statusline, surround, text objects |
@@ -257,7 +257,6 @@ Git diff signs appear in the sign column automatically via gitsigns.
 |--------|---------|
 | `HakonHarnes/img-clip.nvim` | Paste images from clipboard into markdown |
 | `goolord/alpha-nvim` | Dashboard/start screen |
-| `greggh/claude-code.nvim` | Claude AI integration |
 | `wakatime/vim-wakatime` | WakaTime coding time tracker |
 | `ionide/Ionide-vim` | F# language support |
 | `emacs-grammarly/lsp-grammarly` | Grammarly LSP for prose |
@@ -309,9 +308,10 @@ Then install the formatter via Mason (`:Mason`) or ensure it is on your `$PATH`.
 
 ## Color Schemes
 
-The default theme is **cyberdream**. To switch, change the `colorscheme` line in `init.lua`:
+The default theme is **nordic**. To switch, change the colorscheme plugin block in `lua/custom/plugins/init.lua`:
 
 ```lua
+require('nordic').load()            -- current default
 vim.cmd.colorscheme 'synthwave84'   -- alternate included theme
 ```
 
