@@ -398,4 +398,29 @@ return {
     },
     opts = {},
   },
+
+  { -- GitHub Copilot Chat (<leader>cc opens chat, <leader>cq quick chat)
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken',
+    opts = {
+      model  = 'auto',
+      window = { layout = 'vertical', width = 0.4 },
+      auto_insert_mode = true,
+    },
+    keys = {
+      { '<leader>cc', '<cmd>CopilotChatToggle<CR>',  mode = { 'n', 'v' }, desc = '[C]opilot [C]hat toggle' },
+      { '<leader>cq', function()
+          local input = vim.fn.input 'Quick Chat: '
+          if input ~= '' then
+            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
+          end
+        end, mode = { 'n', 'v' }, desc = '[C]opilot [Q]uick Chat' },
+      { '<leader>cp', '<cmd>CopilotChatPrompts<CR>',  desc = '[C]opilot [P]rompts' },
+      { '<leader>cm', '<cmd>CopilotChatModels<CR>',   desc = '[C]opilot [M]odels' },
+      { '<leader>cr', '<cmd>CopilotChatReset<CR>',    desc = '[C]opilot [R]eset chat' },
+    },
+  },
 }

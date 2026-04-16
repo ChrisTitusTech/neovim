@@ -177,9 +177,18 @@ Git diff signs appear in the sign column automatically via gitsigns.
 |-----|--------|
 | `<leader>p` | Paste image from clipboard (`img-clip`) |
 | `<leader>a` | Open Alpha dashboard |
-| `<leader>cc` | Open Claude Code |
 | `Ctrl+\` | Toggle Zen mode |
 | `Esc` (normal) | Clear search highlights |
+
+### Copilot Chat
+
+| Key | Action |
+|-----|--------|
+| `<leader>cc` | Toggle Copilot Chat window |
+| `<leader>cq` | Quick Chat (prompt without opening window) |
+| `<leader>cp` | Browse/select prompt templates |
+| `<leader>cm` | Browse/select AI model |
+| `<leader>cr` | Reset chat history |
 
 ---
 
@@ -234,6 +243,13 @@ Git diff signs appear in the sign column automatically via gitsigns.
 | `akinsho/toggleterm.nvim` | Integrated terminal |
 | `Pocco81/auto-save.nvim` | Auto-save buffers |
 | `lambdalisue/suda.vim` | Edit files as sudo (`:SudaWrite`) |
+
+### AI
+
+| Plugin | Purpose |
+|--------|---------|
+| `zbirenbaum/copilot.lua` | GitHub Copilot inline suggestions (via blink.cmp) |
+| `CopilotC-Nvim/CopilotChat.nvim` | Interactive Copilot Chat window with prompts & models |
 
 ### Extras
 
@@ -334,3 +350,60 @@ Or install any other theme and set it the same way.
 - **Image paste**: In a markdown file, copy an image to your clipboard and press `<leader>p` to paste and convert it to WebP automatically.
 - **Zen mode**: Press `Ctrl+\` or run `:lua Snacks.zen()` for a distraction-free writing view.
 - **Notifications**: Toast notifications appear via Snacks notifier. Run `:lua Snacks.notifier.show_history()` to see past messages.
+
+---
+
+## Copilot Chat
+
+[CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) brings GitHub Copilot Chat into Neovim.
+
+### Requirements
+
+- GitHub Copilot subscription with **Copilot Chat** enabled in your [GitHub settings](https://github.com/settings/copilot).
+- `curl 8.0+` (usually already installed).
+
+### Usage
+
+Press `<leader>cc` to toggle the chat panel. Type your prompt and press `Ctrl+s` (insert mode) or `<CR>` (normal mode) to submit.
+
+**Reference context in your prompt:**
+
+| Syntax | What it adds |
+|--------|--------------|
+| `#buffer` | Current buffer content |
+| `#buffer:active` | Active buffer with diagnostics |
+| `#file:path/to/file` | A specific file |
+| `#gitdiff:staged` | Staged git diff |
+| `#selection` | Current visual selection |
+| `#url:https://...` | Contents of a URL |
+
+**Built-in prompt templates** (run `:CopilotChatPrompts` or `<leader>cp`):
+
+| Prompt | Action |
+|--------|--------|
+| `/Explain` | Explain the selected/buffer code |
+| `/Review` | Comprehensive code review |
+| `/Fix` | Identify problems and rewrite with fixes |
+| `/Optimize` | Improve performance and readability |
+| `/Docs` | Add documentation comments |
+| `/Tests` | Generate tests |
+| `/Commit` | Generate a commitizen commit message |
+
+**Switch models** with `<leader>cm` or `:CopilotChatModels` — available models depend on your Copilot plan.
+
+### Chat window keymaps
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+s` | Submit prompt |
+| `Ctrl+c` / `q` | Close chat window |
+| `Ctrl+l` | Reset / clear chat |
+| `Ctrl+y` | Accept nearest diff |
+| `gd` | Show diff between source and nearest diff |
+| `gy` | Yank nearest diff to register |
+| `gc` | Show current chat info |
+| `gh` | Show help |
+
+### Optional: accurate token counting
+
+Install `tiktoken_core` for precise token counts (the plugin's `build = 'make tiktoken'` step handles this automatically if `make` is available).
