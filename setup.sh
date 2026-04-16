@@ -52,6 +52,11 @@ if [ -f /etc/os-release ]; then
         if ! command -v markdownlint-cli2 >/dev/null 2>&1; then
             sudo npm install -g markdownlint-cli2
         fi
+        # Copy markdownlint configuration to home directory for global use
+        if [ -f "$gitpath/.markdownlint-cli2.yaml" ]; then
+            cp "$gitpath/.markdownlint-cli2.yaml" "$HOME/.markdownlint-cli2.yaml"
+            echo -e "${GREEN}Copied .markdownlint-cli2.yaml to home directory${RC}"
+        fi
     else
         echo -e "${YELLOW}npm not found. Install markdownlint-cli2 manually to enable Markdown linting.${RC}"
     fi
