@@ -30,7 +30,6 @@ vim.o.confirm = true
 vim.o.termguicolors = true
 vim.o.pumblend = 10
 vim.o.winblend = 10
-vim.o.conceallevel = 2
 vim.o.smoothscroll = true
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
