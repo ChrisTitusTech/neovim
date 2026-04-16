@@ -509,7 +509,7 @@ return {
       {
         '<leader>cc',
         function()
-          require('CopilotChat').toggle { resources = 'buffer' }
+          require('CopilotChat').toggle()
         end,
         mode = { 'n', 'v' },
         desc = '[C]opilot [C]hat toggle',

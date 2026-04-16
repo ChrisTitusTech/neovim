@@ -1,6 +1,29 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
+local function url_in_line_at_col(line, col)
+  if not line or line == '' or not col or col < 1 then
+    return nil
+  end
+
+  local from = 1
+  while true do
+    local s, e = line:find('https?://%S+', from)
+    if not s then
+      return nil
+    end
+
+    if col >= s and col <= e then
+      local url = line:sub(s, e)
+      -- Trim punctuation that commonly trails URLs in prose/markdown.
+      url = url:gsub('[%]%)%}%.,;:!%?"' .. "'" .. ']+$', '')
+      return url ~= '' and url or nil
+    end
+
+    from = e + 1
+  end
+end
+
 -- ============================================================
 -- [[ Window Navigation & Resize ]]
 -- ============================================================
@@ -34,6 +57,25 @@ map('n', '<Leader>c', '<cmd>tabclose<CR>', { silent = true, desc = 'Close tab' }
 -- ============================================================
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
 map('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = '[N]o [H]ighlight — clear search' })
+map('n', '<LeftMouse>', function()
+  local m = vim.fn.getmousepos()
+  if m.winid and m.winid ~= 0 and m.line and m.column and m.line > 0 and m.column > 0 then
+    local ok_buf, bufnr = pcall(vim.api.nvim_win_get_buf, m.winid)
+    if ok_buf and bufnr then
+      local ok_line, lines = pcall(vim.api.nvim_buf_get_lines, bufnr, m.line - 1, m.line, false)
+      if ok_line then
+        local target = url_in_line_at_col(lines[1] or '', m.column)
+        if target then
+          vim.ui.open(target)
+          return
+        end
+      end
+    end
+  end
+
+  -- Non-URL clicks should behave exactly like default Neovim mouse clicks.
+  vim.api.nvim_feedkeys(vim.keycode '<LeftMouse>', 'n', false)
+end, { desc = 'Click URL to open in browser' })
 
 -- ============================================================
 -- [[ Diagnostics ]]
@@ -54,7 +96,7 @@ map('v', '<', '<gv', { silent = true, desc = 'Dedent and stay in visual mode' })
 map('v', '>', '>gv', { silent = true, desc = 'Indent and stay in visual mode' })
 map('n', '<leader>e', '$', { silent = true, desc = 'Jump to [E]nd of line' })
 map('n', 'S', ':%s//g<Left><Left>', { desc = 'Search and replace in buffer' })
-vim.keymap.set('n', '<leader>yc', function()
+vim.keymap.set('n', 'yc', function()
   local buf = vim.api.nvim_get_current_buf()
   local cur = vim.api.nvim_win_get_cursor(0)[1]
   local last = vim.api.nvim_buf_line_count(buf)
