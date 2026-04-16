@@ -446,13 +446,20 @@ return {
       auto_insert_mode = true,
     },
     keys = {
-      { '<leader>cc', '<cmd>CopilotChatToggle<CR>', mode = { 'n', 'v' }, desc = '[C]opilot [C]hat toggle' },
+      {
+        '<leader>cc',
+        function()
+          require('CopilotChat').toggle { resources = 'buffer' }
+        end,
+        mode = { 'n', 'v' },
+        desc = '[C]opilot [C]hat toggle',
+      },
       {
         '<leader>cq',
         function()
           local input = vim.fn.input 'Quick Chat: '
           if input ~= '' then
-            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
+            require('CopilotChat').ask(input, { resources = 'selection' })
           end
         end,
         mode = { 'n', 'v' },
