@@ -27,20 +27,20 @@ if [ -f /etc/os-release ]; then
 
     case "${ID_LIKE:-$ID}" in
         debian|ubuntu)
-            sudo apt install ripgrep fd-find $CLIPBOARD_PKG python3-venv luarocks golang-go shellcheck -y
+            sudo apt install ripgrep fd-find $CLIPBOARD_PKG python3-venv luarocks golang-go shellcheck webp -y
             ;;
         fedora)
-            sudo dnf install ripgrep fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks golang ShellCheck -y
+            sudo dnf install ripgrep fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks golang ShellCheck libwebp-tools -y
             ;;
         arch|manjaro)
-            sudo pacman -S ripgrep fzf $CLIPBOARD_PKG neovim python-virtualenv luarocks go shellcheck --noconfirm
+            sudo pacman -S ripgrep fzf $CLIPBOARD_PKG neovim python-virtualenv luarocks go shellcheck libwebp --noconfirm
             ;;
         opensuse)
-            sudo zypper install ripgrep fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks go ShellCheck -y
+            sudo zypper install ripgrep fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks go ShellCheck libwebp-tools -y
             ;;
         *)
             echo -e "${YELLOW}Unsupported OS. Please install the following packages manually:${RC}"
-            echo "ripgrep, fzf, $CLIPBOARD_PKG, neovim, python3-virtualenv (or equivalent), luarocks, go, shellcheck"
+            echo "ripgrep, fzf, $CLIPBOARD_PKG, neovim, python3-virtualenv (or equivalent), luarocks, go, shellcheck, webp (cwebp)"
             ;;
     esac
 else

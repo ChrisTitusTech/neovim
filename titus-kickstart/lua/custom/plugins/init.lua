@@ -33,19 +33,23 @@ return {
   {
     'HakonHarnes/img-clip.nvim',
     event = 'VeryLazy',
-    opts = {
-      default = {
-        dir_path = '/home/titus/github/website/static/images/2025/',
-        extension = 'webp',
-        template = '![$FILE_NAME_NO_EXT](/images/2025/$FILE_NAME)',
-        relative_template_path = false,
-      },
-      filetypes = {
-        markdown = {
-          template = '![$FILE_NAME_NO_EXT](/images/2025/$FILE_NAME)',
+    opts = function()
+      local year = os.date '%Y'
+      return {
+        default = {
+          dir_path = '/home/titus/github/website/static/images/' .. year .. '/',
+          extension = 'webp',
+          process_cmd = 'cwebp -q 80 "$FILE_PATH" -o "$FILE_PATH" 2>/dev/null',
+          template = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)',
+          relative_template_path = false,
         },
-      },
-    },
+        filetypes = {
+          markdown = {
+            template = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)',
+          },
+        },
+      }
+    end,
   },
   'mbbill/undotree',
   'wakatime/vim-wakatime',
