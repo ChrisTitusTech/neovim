@@ -342,6 +342,9 @@ return {
       auto_install = true,
       highlight = { enable = true, additional_vim_regex_highlighting = { 'ruby' } },
       indent = { enable = true, disable = { 'ruby' } },
+      -- Disable injections to avoid a Neovim 0.12 / nvim-treesitter compatibility crash
+      -- (query_predicates.lua:141 calling get_node_text on a nil node in the new match format)
+      injections = { enable = false },
     },
   },
 
