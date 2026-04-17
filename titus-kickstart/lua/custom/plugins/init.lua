@@ -115,7 +115,6 @@ return {
       },
       spec = {
         { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -187,12 +186,6 @@ return {
                 vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
               end,
             })
-          end
-
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -530,4 +523,25 @@ return {
       { '<leader>cr', '<cmd>CopilotChatReset<CR>', desc = '[C]opilot [R]eset chat' },
     },
   },
+
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup()
+
+    local gs = require 'gitsigns'
+    local map = vim.keymap.set
+
+    map('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
+    map('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
+    map('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage buffer' })
+    map('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
+    map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview hunk' })
+    map('n', '<leader>hb', function()
+      gs.blame_line { full = true }
+    end, { desc = 'Blame line' })
+    map('n', '<leader>hd', gs.diffthis, { desc = 'Diff this' })
+    -- Toggles
+    map('n', '<leader>gb', gs.toggle_current_line_blame)
+    map('n', '<leader>gw', gs.toggle_word_diff)
+  end,
 }

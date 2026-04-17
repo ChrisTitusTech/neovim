@@ -11,7 +11,9 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
-vim.schedule(function() vim.o.clipboard = 'unnamedplus' end) -- deferred to avoid startup slowdown
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end) -- deferred to avoid startup slowdown
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -42,7 +44,9 @@ vim.o.foldenable = false
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.on_yank() end,
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
 
 -- [[ Plugin Manager Bootstrap ]]
@@ -64,14 +68,19 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.gitsigns',
   { import = 'custom.plugins' },
 }, {
   performance = {
     rtp = {
       disabled_plugins = {
-        'gzip', 'matchit', 'matchparen', 'netrwPlugin', 'tarPlugin', 'tohtml', 'tutor', 'zipPlugin',
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
       },
     },
   },
