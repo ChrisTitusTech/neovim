@@ -44,15 +44,19 @@ if [ -f /etc/os-release ]; then
         debian|ubuntu)
             sudo apt update
             sudo apt install ripgrep fd-find fzf neovim $CLIPBOARD_PKG python3-venv luarocks golang-go shellcheck webp nodejs npm make -y
+            sudo apt install -y markdownlint-cli2 || sudo apt install -y node-markdownlint-cli2 || true
             ;;
         fedora)
             sudo dnf install ripgrep fd-find fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks golang ShellCheck libwebp-tools nodejs npm make -y
+            sudo dnf install -y markdownlint-cli2 || sudo dnf install -y nodejs-markdownlint-cli2 || true
             ;;
         arch|manjaro)
-            sudo pacman -S ripgrep fd fzf $CLIPBOARD_PKG neovim python-virtualenv luarocks go shellcheck libwebp nodejs npm make --noconfirm
+            sudo pacman -S --needed ripgrep fd fzf $CLIPBOARD_PKG neovim python-virtualenv luarocks go shellcheck libwebp nodejs npm make --noconfirm
+            sudo pacman -S --needed markdownlint-cli2 --noconfirm || true
             ;;
         opensuse)
             sudo zypper install ripgrep fd fzf $CLIPBOARD_PKG neovim python3-virtualenv luarocks go ShellCheck libwebp-tools nodejs npm make -y
+            sudo zypper install -y markdownlint-cli2 || sudo zypper install -y nodejs-markdownlint-cli2 || true
             ;;
         *)
             echo -e "${YELLOW}Unsupported OS. Please install the following packages manually:${RC}"
@@ -61,12 +65,12 @@ if [ -f /etc/os-release ]; then
     esac
 
     # nvim-lint uses markdownlint-cli2 for Markdown files.
-    if command -v npm >/dev/null 2>&1; then
-        if ! command -v markdownlint-cli2 >/dev/null 2>&1; then
+    if ! command -v markdownlint-cli2 >/dev/null 2>&1; then
+        if command -v npm >/dev/null 2>&1; then
             sudo npm install -g markdownlint-cli2
+        else
+            echo -e "${YELLOW}npm not found. Install markdownlint-cli2 manually to enable Markdown linting.${RC}"
         fi
-    else
-        echo -e "${YELLOW}npm not found. Install markdownlint-cli2 manually to enable Markdown linting.${RC}"
     fi
 
     echo -e "${GREEN}Dependency check complete.${RC}"
