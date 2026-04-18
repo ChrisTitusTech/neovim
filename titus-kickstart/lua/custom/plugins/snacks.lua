@@ -16,6 +16,14 @@ return {
       explorer = { enabled = true },
       --      image = { enabled = true },
       picker = { enabled = true },
+      project = {
+        -- Directories to scan for projects (add your own paths here)
+        dirs = {
+          '~/github',
+          '~/projects',
+          '~/build',
+        },
+      },
       indent = { enabled = true },
       notifier = { enabled = true },
       statuscolumn = { enabled = true },
