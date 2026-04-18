@@ -17,7 +17,6 @@ return {
 
   -- Simple opts-only plugins
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-  { 'nvim-treesitter/nvim-treesitter-context', opts = { max_lines = 3 } },
   { 'brenoprata10/nvim-highlight-colors', opts = { render = 'background' } },
   { 'Pocco81/auto-save.nvim', opts = {} },
 
@@ -326,18 +325,6 @@ return {
     end,
   },
 
-  { -- Syntax highlighting, code-aware folding, text objects
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-      auto_install = true,
-      highlight = { enable = true, additional_vim_regex_highlighting = { 'ruby' } },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-  },
-
   { -- File manager as a buffer (edit filesystem like text); `-` to open
     'stevearc/oil.nvim',
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
@@ -480,7 +467,7 @@ return {
 
   { -- Symbol outline sidebar, like VSCode outline panel (<leader>ao)
     'stevearc/aerial.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>ao', '<cmd>AerialToggle!<CR>', desc = 'Toggle [A]erial [O]utline' },
     },
