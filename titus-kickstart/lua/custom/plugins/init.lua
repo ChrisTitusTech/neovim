@@ -12,7 +12,6 @@ return {
   'mbbill/undotree', -- persistent undo history tree (mapped to <F5>)
   'wakatime/vim-wakatime', -- WakaTime coding time tracker
   'lambdalisue/suda.vim', -- edit files as sudo (:SudaWrite)
-  'ionide/Ionide-vim', -- F# language support
   { 'mg979/vim-visual-multi', branch = 'master' }, -- multi-cursor (Ctrl+N)
 
   -- Simple opts-only plugins
@@ -242,13 +241,13 @@ return {
     end,
   },
 
-  { -- Autoformat on save; <leader>f to format manually
+  { -- Autoformat on save; <leader>= to format manually
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>=',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
@@ -311,11 +310,11 @@ return {
     },
   },
 
-  { -- mini.ai (text objects), mini.surround, mini.statusline
+  { -- mini.icons and mini.statusline only (disabled mini.ai)
     'echasnovski/mini.nvim',
     config = function()
-      require('mini.ai').setup { n_lines = 500 }
-      require('mini.surround').setup()
+      -- Only load mini.icons and mini.statusline, disable mini.ai
+      require('mini.icons').setup()
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
       ---@diagnostic disable-next-line: duplicate-set-field
@@ -336,6 +335,8 @@ return {
           ['<C-l>'] = false,
           ['<C-j>'] = false,
           ['<M-h>'] = 'actions.select_split',
+          ['q'] = 'actions.close',
+          ['<Esc>'] = 'actions.close',
         },
         view_options = { show_hidden = true },
       }
@@ -361,13 +362,6 @@ return {
           markdown = { template = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)' },
         },
       }
-    end,
-  },
-
-  { -- Smart comment toggling (<leader>/)
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
     end,
   },
 
@@ -425,7 +419,7 @@ return {
     keys = {
       { '<S-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
       { '<S-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
-      { '<leader>x', '<cmd>bdelete<CR>', desc = 'Close buffer' },
+      { '<leader>d', '<cmd>bdelete<CR>', desc = 'Close buffer' },
     },
   },
 
@@ -465,11 +459,11 @@ return {
     opts = {},
   },
 
-  { -- Symbol outline sidebar, like VSCode outline panel (<leader>ao)
+  { -- Symbol outline sidebar, like VSCode outline panel (<leader>v)
     'stevearc/aerial.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '<leader>ao', '<cmd>AerialToggle!<CR>', desc = 'Toggle [A]erial [O]utline' },
+      { '<leader>v', '<cmd>AerialToggle!<CR>', desc = 'Toggle outline [V]iew' },
     },
     opts = {},
   },

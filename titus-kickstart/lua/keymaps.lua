@@ -50,7 +50,7 @@ map('n', '<Leader>3', '3gt', { silent = true, desc = 'Go to tab 3' })
 map('n', '<Leader>4', '4gt', { silent = true, desc = 'Go to tab 4' })
 map('n', '<Leader>5', '5gt', { silent = true, desc = 'Go to tab 5' })
 map('n', '<Leader>t', '<cmd>tabnew<CR>', { silent = true, desc = 'New tab' })
-map('n', '<Leader>c', '<cmd>tabclose<CR>', { silent = true, desc = 'Close tab' })
+map('n', '<A-q>', '<cmd>tabclose<CR>', { silent = true, desc = 'Close tab' })
 
 -- ============================================================
 -- [[ Search ]]
@@ -138,10 +138,27 @@ vim.keymap.set('n', 'yc', function()
 end, { desc = 'Yank fenced code block to clipboard' })
 
 -- ============================================================
--- [[ Comments ]]
+-- [[ Comments ]] (prefer <leader>/ over builtin gc/gcc)
 -- ============================================================
-map('n', '<leader>/', "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-map('x', '<leader>/', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
+do
+  local n_gc = vim.fn.maparg('gc', 'n', false, true)
+  local n_gcc = vim.fn.maparg('gcc', 'n', false, true)
+  local x_gc = vim.fn.maparg('gc', 'x', false, true)
+
+  if type(n_gcc) == 'table' and n_gcc.callback then
+    map('n', '<leader>/', n_gcc.callback, { desc = 'Toggle comment line' })
+  elseif type(n_gc) == 'table' and n_gc.callback then
+    map('n', '<leader>/', n_gc.callback, { desc = 'Toggle comment' })
+  end
+
+  if type(x_gc) == 'table' and x_gc.callback then
+    map('x', '<leader>/', x_gc.callback, { desc = 'Toggle comment selection' })
+  end
+
+  pcall(vim.keymap.del, 'n', 'gc')
+  pcall(vim.keymap.del, 'n', 'gcc')
+  pcall(vim.keymap.del, 'x', 'gc')
+end
 
 -- ============================================================
 -- [[ Tools & Plugins ]]

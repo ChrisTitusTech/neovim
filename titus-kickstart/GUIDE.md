@@ -216,7 +216,7 @@ Git diff signs appear in the sign column automatically via gitsigns.
 | `AlexvZyl/nordic.nvim` | Default color scheme |
 | `lunarvim/synthwave84.nvim` | Alternate color scheme |
 | `akinsho/bufferline.nvim` | VSCode-style buffer tabs |
-| `echasnovski/mini.nvim` | Statusline, surround, text objects |
+| `echasnovski/mini.nvim` | Statusline, text objects |
 | `folke/which-key.nvim` | Keymap popup hints |
 | `folke/todo-comments.nvim` | Highlights `TODO`, `FIXME`, `NOTE` etc. |
 | `brenoprata10/nvim-highlight-colors` | Inline color swatches for hex/rgb values |
@@ -344,7 +344,6 @@ Or install any other theme and set it the same way.
 ## Tips
 
 - **Folding**: Folds are powered by treesitter and start open. Use `za` to toggle a fold, `zR` to open all, `zM` to close all.
-- **Surround**: Use `mini.surround` — e.g. `sa` to add, `sd` to delete, `sr` to replace surroundings.
 - **Text objects**: `mini.ai` extends default text objects — `a` and `i` work with functions, classes, arguments and more.
 - **Sudo write**: Use `:SudaWrite` to save a file that requires sudo.
 - **Image paste**: In a markdown file, copy an image to your clipboard and press `<leader>p` to paste and convert it to WebP automatically.
