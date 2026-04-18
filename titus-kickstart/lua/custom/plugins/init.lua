@@ -476,6 +476,7 @@ return {
     build = 'make tiktoken',
     opts = {
       model = 'auto',
+      resources = { 'buffer:listed' },
       window = { layout = 'vertical', width = 0.4 },
       auto_insert_mode = true,
     },

@@ -96,46 +96,29 @@ map('v', '<', '<gv', { silent = true, desc = 'Dedent and stay in visual mode' })
 map('v', '>', '>gv', { silent = true, desc = 'Indent and stay in visual mode' })
 map('n', '<leader>e', '$', { silent = true, desc = 'Jump to [E]nd of line' })
 map('n', 'S', ':%s//g<Left><Left>', { desc = 'Search and replace in buffer' })
-vim.keymap.set('n', 'yc', function()
-  local buf = vim.api.nvim_get_current_buf()
-  local cur = vim.api.nvim_win_get_cursor(0)[1]
-  local last = vim.api.nvim_buf_line_count(buf)
-
-  local start_fence, end_fence
-
-  for l = cur, 1, -1 do
-    local line = vim.api.nvim_buf_get_lines(buf, l - 1, l, false)[1] or ''
-    if line:match '^```' then
-      start_fence = l
-      break
-    end
+map('n', '<leader>y', function()
+  -- Walk up the treesitter tree to find a fenced_code_block node.
+  -- The markdown parser is bundled with Neovim 0.10+, no plugin required.
+  local node = vim.treesitter.get_node()
+  while node and node:type() ~= 'fenced_code_block' do
+    node = node:parent()
   end
-
-  if not start_fence then
-    vim.notify('No opening code fence found above cursor', vim.log.levels.WARN)
+  if not node then
+    vim.notify('Not inside a fenced code block', vim.log.levels.WARN)
     return
   end
-
-  for l = cur, last do
-    local line = vim.api.nvim_buf_get_lines(buf, l - 1, l, false)[1] or ''
-    if line:match '^```' and l > start_fence then
-      end_fence = l
-      break
+  -- The grammar puts the actual code lines in a code_fence_content child.
+  for child in node:iter_children() do
+    if child:type() == 'code_fence_content' then
+      local text = vim.treesitter.get_node_text(child, 0)
+      vim.fn.setreg('+', text)
+      vim.fn.setreg('"', text)
+      vim.notify('Code block copied to clipboard', vim.log.levels.INFO)
+      return
     end
   end
-
-  if not end_fence then
-    vim.notify('No closing code fence found below cursor', vim.log.levels.WARN)
-    return
-  end
-
-  local lines = vim.api.nvim_buf_get_lines(buf, start_fence, end_fence - 1, false)
-  local text = table.concat(lines, '\n')
-
-  vim.fn.setreg('+', text)
-  vim.fn.setreg('"', text)
-  vim.notify('Code block copied to clipboard', vim.log.levels.INFO)
-end, { desc = 'Yank fenced code block to clipboard' })
+  vim.notify('Code block is empty', vim.log.levels.WARN)
+end, { desc = '[Y]ank fenced code block to clipboard' })
 
 -- ============================================================
 -- [[ Comments ]] (prefer <leader>/ over builtin gc/gcc)
