@@ -2,6 +2,12 @@
 
 This repo is my daily Neovim setup built on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), with extra plugins and quality-of-life tooling layered on top.
 
+### Current Issues to Fix
+
+- Give prompt to disable wakatime plugin as most don't use this
+- Finish updating everything to Neovim 0.12 (remove lazy vim and use new package management)
+- Check LSP config that changed in Neovim 0.11
+
 ## Quick Start
 
 ```bash
