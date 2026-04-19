@@ -1,5 +1,5 @@
 -- [[ Globals & Bootstrap ]]
--- Leader must be set before lazy.nvim loads plugins
+-- Leader must be set before plugin/ scripts are sourced
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.loader.enable() -- Lua bytecode cache for faster startup
@@ -49,84 +49,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Plugin Manager Bootstrap ]]
--- Installs lazy.nvim automatically on first run. Run :Lazy to manage plugins.
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.uv.fs_stat(lazypath) then
-  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', 'https://github.com/folke/lazy.nvim.git', lazypath }
-  if vim.v.shell_error ~= 0 then
-    error('Error cloning lazy.nvim:\n' .. out)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
 -- [[ Plugins ]]
--- All plugin specs live in lua/custom/plugins/
--- Optional kickstart modules are toggled here; comment out to disable
-require('lazy').setup({
-  -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
-  { import = 'custom.plugins' },
-}, {
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'gzip',
-        'matchit',
-        'matchparen',
-        'netrwPlugin',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
-      },
-    },
-  },
-  checker = { enabled = false },
-  change_detection = { enabled = false },
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
-})
+-- Plugin files live in plugin/ and are sourced automatically by Neovim.
+-- Run :lua vim.pack.update() to update all plugins.
 
 require 'keymaps'
-
--- [[ Post-setup ]]
--- Hide Copilot inline suggestions when blink.cmp menu is open
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'CopilotAttached',
-  callback = function()
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'BlinkCmpMenuOpen',
-      callback = function()
-        vim.b.copilot_suggestion_hidden = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'BlinkCmpMenuClose',
-      callback = function()
-        vim.b.copilot_suggestion_hidden = false
-      end,
-    })
-  end,
-})
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
