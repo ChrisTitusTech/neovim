@@ -30,7 +30,7 @@ map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = '[S]earch 
 map('n', '<leader>fe', function() Snacks.explorer.open() end, { desc = '[F]iles [E]xplorer open tree' })
 map('n', '<leader>ff', function() Snacks.picker.smart() end, { desc = '[S]earch [F]iles' })
 map('n', '<leader>ss', function() Snacks.picker.pickers() end, { desc = '[S]earch [S]elect Snacks' })
-map('n', '<leader>sw', function() Snacks.picker.grep_word() end, { desc = '[S]earch current [W]ord', mode = { 'n', 'x' } })
+map({ 'n', 'x' }, '<leader>sw', function() Snacks.picker.grep_word() end, { desc = '[S]earch current [W]ord' })
 map('n', '<leader>fg', function() Snacks.picker.grep() end, { desc = '[S]earch by [G]rep' })
 map('n', '<leader>fp', function() Snacks.picker.projects() end, { desc = '[S]earch [P]rojects' })
 map('n', '<leader>sd', function() Snacks.picker.diagnostics() end, { desc = '[S]earch [D]iagnostics' })
