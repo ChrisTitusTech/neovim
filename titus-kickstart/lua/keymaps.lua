@@ -39,9 +39,7 @@ map('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 -- ============================================================
 -- [[ Buffer & Tab Navigation ]]
 -- ============================================================
--- <S-h>/<S-l> are overridden by bufferline.nvim with BufferLineCyclePrev/Next
-map('n', '<S-h>', ':bprevious<CR>', opts)
-map('n', '<S-l>', ':bnext<CR>', opts)
+-- Buffer navigation keys are owned by bufferline.nvim in plugin specs.
 map('n', '<S-q>', '<cmd>bdelete!<CR>', { silent = true, desc = 'Close buffer' })
 
 map('n', '<Leader>1', '1gt', { silent = true, desc = 'Go to tab 1' })
