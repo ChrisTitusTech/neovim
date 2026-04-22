@@ -29,6 +29,10 @@ vim.pack.add({
   { src = 'https://github.com/mg979/vim-visual-multi', version = 'master' },
   -- Grammarly LSP for prose
   'https://github.com/emacs-grammarly/lsp-grammarly',
+  -- F# language support
+  'https://github.com/ionide/Ionide-vim',
+  -- Smart comment toggling
+  'https://github.com/numToStr/Comment.nvim',
 })
 
 -- autopairs
@@ -64,13 +68,16 @@ require('guess-indent').setup {}
 -- todo-comments
 require('todo-comments').setup { signs = false }
 
+-- Comment.nvim
+require('Comment').setup()
+
 -- img-clip
 local year = os.date '%Y'
 require('img-clip').setup {
   default = {
     dir_path = '/home/titus/github/website/static/images/' .. year .. '/',
     extension = 'webp',
-    process_cmd = 'cwebp -q 80 "$FILE_PATH" -o "$FILE_PATH" 2>/dev/null',
+    process_cmd = '/usr/bin/cwebp -quiet -q 80 -o - -- - 2>/dev/null',
     template = '![$FILE_NAME_NO_EXT](/images/' .. year .. '/$FILE_NAME)',
     relative_template_path = false,
   },

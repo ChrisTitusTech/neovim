@@ -1,8 +1,16 @@
 {
   "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "https://github.com/numToStr/Comment.nvim"
+    },
     "CopilotChat.nvim": {
       "rev": "5378035c2eb4089de245473dec1768e0986543bd",
       "src": "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
+    },
+    "Ionide-vim": {
+      "rev": "30aac182c9652f37b5ce65942e5cc32371595995",
+      "src": "https://github.com/ionide/Ionide-vim"
     },
     "LuaSnip": {
       "rev": "642b0c595e11608b4c18219e93b88d7637af27bc",
@@ -104,6 +112,10 @@
     "nvim-lspconfig": {
       "rev": "4b7fbaa239c5db6b36f424a4521ca9f1a401be33",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter-context": {
+      "rev": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
       "rev": "c72328a5494b4502947a022fe69c0c47e53b6aa6",
