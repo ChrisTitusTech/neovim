@@ -5,6 +5,34 @@ vim.g.maplocalleader = ' '
 vim.loader.enable() -- Lua bytecode cache for faster startup
 vim.g.have_nerd_font = true -- set true if a Nerd Font is active in your terminal
 
+if vim.g.neovide then
+  local neovide_font_size = 12
+  local font_candidates = {
+    'MesloLGS NF',
+    'JetBrainsMono Nerd Font',
+    'JetBrainsMonoNL Nerd Font',
+    'FiraCode Nerd Font',
+    'Hack Nerd Font',
+    'Noto Sans Mono',
+    'Monospace',
+  }
+
+  local selected_font = font_candidates[#font_candidates]
+  if vim.fn.executable 'fc-list' == 1 then
+    local out = vim.fn.system({ 'fc-list', ':', 'family' })
+    for _, font_name in ipairs(font_candidates) do
+      if out:find(font_name, 1, true) then
+        selected_font = font_name
+        break
+      end
+    end
+  else
+    selected_font = font_candidates[1]
+  end
+
+  vim.o.guifont = string.format('%s:h%d', selected_font, neovide_font_size)
+end
+
 -- [[ Options ]]
 -- See :help option-list for the full list
 vim.o.number = true
