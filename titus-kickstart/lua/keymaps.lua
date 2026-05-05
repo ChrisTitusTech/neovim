@@ -147,4 +147,3 @@ end
 map('n', '<leader>a', ':Alpha<CR>', { silent = true, desc = 'Open [A]lpha dashboard' })
 map('n', '<leader>p', '<cmd>PasteImage<CR>', { silent = true, desc = '[P]aste image from clipboard' })
 map('n', '<F5>', '<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>', { silent = true, desc = 'Toggle Undotree' })
-map('n', '<C-\\>', '<cmd>TZAtaraxis<CR>', { silent = true, desc = 'Toggle Zen mode' })

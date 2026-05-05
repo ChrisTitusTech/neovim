@@ -40,3 +40,4 @@ map('n', '<leader><leader>', function() Snacks.picker.buffers() end, { desc = '[
 map('n', '<leader>/', function() Snacks.picker.lines {} end, { desc = '[/] Fuzzily search in current buffer' })
 map('n', '<leader>s/', function() Snacks.picker.grep_buffers() end, { desc = '[S]earch [/] in Open Files' })
 map('n', '<leader>sn', function() Snacks.picker.files { cwd = vim.fn.stdpath 'config' } end, { desc = '[S]earch [N]eovim files' })
+map('n', '<C-\\>', function() Snacks.zen() end, { desc = 'Toggle [Z]en mode' })
